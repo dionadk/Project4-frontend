@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Signup from '../Signup/Signup.js';
+import Landing from '../Landing/Landing.js';
+import Todo from '../Todo/Todo.js';
 import axios from 'axios';
 import {
   BrowserRouter as Router,
@@ -19,28 +21,35 @@ class App extends Component {
     }
   }
 
+  componentDidMount(){
+
+}
+
 
   render() {
     return (
     <div>
       <Router>
-        <div>
-        <nav>
-          <Link to="/signup">Signup</Link>
-          <Link to="/login">Login</Link>
-        </nav>
-        <Switch>
 
-          <Route path='/signup' render={() => (
-            <Signup />
-          )}/>
+          <Switch>
 
-          <Route path='/login' render={() => (
-            <login />
-          )}/>
+            <Route exact path='/signup' render={(props) => (
+              <Signup
+                {...props}
+                users={this.state.user} />
+            )}/>
 
-        </Switch>
-      </div>
+            <Route exact path='/home/:_id' render={(props) => (
+              <Landing
+              />
+            )}/>
+
+
+            {/* <Route path='/login' render={() => (
+              <Login />
+            )}/> */}
+
+          </Switch>
       </Router>
     </div>
     );

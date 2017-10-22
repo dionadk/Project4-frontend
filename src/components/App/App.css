@@ -1,6 +1,28 @@
 .App {
   text-align: center;
 }
+a{
+    text-decoration: none;
+    margin: 20px 20px 0 20px;
+    color: chocolate;
+  }
+.loginBanner{
+
+  margin: 15% 35% 0 35%;
+  box-shadow: 2px 2px 5px gray;
+  width: 500px;
+}
+.headerBanner{
+  padding-top: 25px;
+  height: 40px;
+  background-color: #fff;
+  border-bottom:  1px solid rgba(128, 128, 128, 0.24);
+}
+.headerContainer{
+  width: 500px;
+  height: 230px;
+  background-color: #fff;
+}
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
