@@ -3,6 +3,7 @@ import './App.css';
 import Signup from '../Signup/Signup.js';
 import Landing from '../Landing/Landing.js';
 import Todo from '../Todo/Todo.js';
+import Edit from '../Edit/Edit.js';
 import axios from 'axios';
 import {
   BrowserRouter as Router,
@@ -17,7 +18,8 @@ class App extends Component {
     super (props)
     this.state = {
       users: [],
-      groups: []
+      groups: [],
+      todos: []
     }
   }
 
@@ -40,9 +42,19 @@ class App extends Component {
             )}/>
 
             <Route exact path='/home/:_id' render={(props) => (
+
               <Landing
+                {...props}
+                users={this.state.users}
               />
             )}/>
+
+            <Route exact path="/home/:_id/updateTodo" render={(props) => (
+              <Edit
+                {...props}
+                user={this.state.users}
+              />
+            )} />
 
 
             {/* <Route path='/login' render={() => (

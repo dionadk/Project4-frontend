@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+// import { Route } from 'react-router-dom'
 import './Signup.css';
 import Landing from '../Landing/Landing.js'
 import axios from 'axios'
@@ -16,7 +17,7 @@ export default class Signup extends Component {
   constructor(props) {
     super(props)
     this.state = {
-        username: '',
+        userName: '',
         email: '',
         password: ''
       }
@@ -37,12 +38,12 @@ export default class Signup extends Component {
     e.preventDefault()
     console.log(`state: ${this.state}`);
     axios.post("http://localhost:4000/api/users",{
-      username: this.state.username,
+      userName: this.state.userName,
       email: this.state.email,
       password: this.state.password,
     }).then((response)=>{
       console.log(response)
-      // window.location.href= "/home/" + response.data._id;
+      window.location.href= "/home/" + response.data._id;
     }).catch((err) => {
       console.log(err)
     })
@@ -73,9 +74,6 @@ export default class Signup extends Component {
                 <button type="submit" value="signup">Signup</button>
           </form>
       </div>
-      </div>
-      <div>
-        <Landing user={this.state.user}/>
       </div>
   </div>
     )

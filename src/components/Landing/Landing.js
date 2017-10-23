@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Signup from '../Signup/Signup.js'
 import Todo from '../Todo/Todo.js';
+import Edit from '../Edit/Edit.js';
 import axios from 'axios'
 import {
   BrowserRouter as Router,
@@ -15,49 +16,75 @@ export default class Landing extends Component {
   constructor(props){
     super(props)
     let selectedUser = this.props.match.params._id
-    let singleUser = props.posts.filter(item => item._id === selectedUser)
+
+    console.log(selectedUser)
+    console.log(props)
+    let singleUser = props.users.filter(item => item._id === selectedUser)
         this.state = {
-          users: [],
-          todos: [],
+          user: [],
+          todos: []
 
 
         }
+        console.log(this.state.user)
+
   }
-  //
-  // componentDidMount () {
-  //   console.log(selectedUser)
-  //   let selectedUser = this.props.match.params._id
-  //   axios.get(`http://localhost:4000/api/${selectedUser}`)
-  //        .then(response => this.setState({
-  //          user: response.data
-  //        }))
-  //        .catch((err) => console.log(err))
-  // }
+
+  componentDidMount () {
+    // console.log(this.state.singleUser)
+    let selectedUser = this.props.match.params._id
+    axios.get(`http://localhost:4000/api/users/${selectedUser}`)
+    // .then(response => console.log(response.data.userName))
+         .then(response => this.setState({
+           user: response.data
+         }))
+         .then(response => console.log(this.state.user))
+         .catch((err) => console.log(err))
+
+    axios.get(`http://localhost:4000/api/users/${selectedUser}/todos`)
+    // .then(response => console.log(response.data.userName))
+        .then(response => this.setState({
+          todos: response.data
+        }))
+        .then(response => console.log(this.state.user))
+        .catch((err) => console.log(err))
+
+
+  }
+
 
 
 
   render () {
+
     return(
       <div>
-        <h1>This is the landing page</h1>
-        {/* <p>{this.props.user.username}</p> */}
-        {/* <Router>
+        <h1>Welcome {this.state.user.userName}</h1>
+
           <nav>
             <Link to="/home">Home</Link>
-            <Link to="/todo">Todo</Link>
-            <Link to="/journal">Journal</Link>
+            <Link to="/todo">Create Todo</Link>
+            <Link to="/journal">Create Journal</Link>
           </nav>
-          <Switch>
-            <Route path="/todo" render={() => (
-                <Todo />
-              )} />
+          <section>
+          <Todo
+            user={this.state.user}
+          />
+          {/* <Edit
+            todo={this.state.todo}
+          /> */}
+          <ul>
+              {this.state.todos.map(todo => {
+                return (
+                  <div className='todo'key={todo._id}>
+                    <Link to={`/home/${this.state.user._id}/updateTodo`}>{todo.item} (edit) (delete)</Link>
 
-            <Route path="/journal" render={() => (
-                <Journal />
-              )} />
+                    <h6> Completed: {todo.isComplete}</h6>
+                  </div>)
+              })}
+            </ul>
+        </section>
 
-          </Switch>
-        </Router> */}
       </div>
 
     )
