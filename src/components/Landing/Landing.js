@@ -14,8 +14,8 @@ import {
 export default class Landing extends Component {
   constructor(props){
     super(props)
-    // let selectedUser = this.props.match.params._id
-    // let singleUser = props.posts.filter(item => item._id === selectedUser)
+    let selectedUser = this.props.match.params._id
+    let singleUser = props.posts.filter(item => item._id === selectedUser)
         this.state = {
           users: [],
           todos: [],
