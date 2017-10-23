@@ -35,22 +35,23 @@ export default class Signup extends Component {
 
   handleSubmitSignup (e) {
     e.preventDefault()
-    console.log(this.state);
+    console.log(`state: ${this.state}`);
     axios.post("http://localhost:4000/api/users",{
       username: this.state.username,
       email: this.state.email,
       password: this.state.password,
     }).then((response)=>{
       console.log(response)
-      window.location.href= "/home/" + response.data._id;
+      // window.location.href= "/home/" + response.data._id;
     }).catch((err) => {
       console.log(err)
     })
   }
 
   render () {
+    // console.log(this.state.user)
     return (
-      <div className="loginBanner">
+  <div className="loginBanner">
       <div className="flexrow headerBanner">
         <Link to="/signup">Signup</Link>
         <Link to="/login">Login</Link>
@@ -60,20 +61,23 @@ export default class Signup extends Component {
       <div id="parent">
         <div className="selectorBrd"></div>
           <form id="form_login" onSubmit={this.handleSubmitSignup}>
-            <div>
-              <input name="userName" type="text" placeholder="user name" onChange={this.handleCreateSignup}/>
-            </div>
+              <div>
+                <input name="userName" type="text" placeholder="user name" onChange={this.handleCreateSignup}/>
+              </div>
               <div>
                 <input name="email" type="text" placeholder="email" onChange={this.handleCreateSignup}/>
               </div>
-                <div>
-                  <input name="password" type="password" placeholder="password" onChange={this.handleCreateSignup}/>
-                </div>
-              <button type="submit" value="signup">Signup</button>
-            </form>
+              <div>
+                <input name="password" type="password" placeholder="password" onChange={this.handleCreateSignup}/>
+              </div>
+                <button type="submit" value="signup">Signup</button>
+          </form>
       </div>
-</div>
-</div>
+      </div>
+      <div>
+        <Landing user={this.state.user}/>
+      </div>
+  </div>
     )
   }
 
