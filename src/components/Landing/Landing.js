@@ -25,11 +25,13 @@ export default class Landing extends Component {
           user: [],
           todos: [],
           journels: [],
+          item: ''
+
         }
         console.log(this.state.user)
 
         this.handleEditField = this.handleEditField.bind(this)
-        this.handleTodoUpdate = this.handleTodoUpdate.bind(this)
+
         this.handleEditItem = this.handleEditItem.bind(this)
         this.toggleEditing = this.toggleEditing.bind(this)
 
@@ -72,29 +74,25 @@ export default class Landing extends Component {
 // check if user is updating.
   handleEditField( event ) {
     if ( event.keyCode === 13 ) {
-      let target = event.target,
-          update = {}; //creating an empty object
-
+      let name = event.target.value
+      let update = {}
       update._id = this.state.editing;
-      update[ target.name ] = target.value;
-
-      this.handleTodoUpdate( update );
+      update[ event.target.name ] = event.target.value;
+      console.log(update[ event.target.name ])
+          this.setState ({
+            [name]: update[ event.target.name ]
+          })
+          console.log(update[ event.target.name ])
     }
   }
 
   handleEditItem() {
+    console.log("this is not happeing")
     let todoId = this.state.editing;
+    console.log(todoId)
+    console.log(this.state.item)
+    axios.post(`http://localhost:4000/api/todos/${this.state.editing}/updateTodo`,{item: this.state.name})
 
-    this.handleTodoUpdate({
-      _id: todoId,
-      item: this.refs[ `item_${ todoId }` ].value
-      // item: this.state.item
-
-    })
-  }
-
-  handleTodoUpdate (update) {
-    axios.post(`https://localhost:4000/api/${this.state.todo._id}}updateTodo`,{item: this.state.item})
   }
 
   toggleEditing(todoId) {
@@ -104,17 +102,19 @@ export default class Landing extends Component {
   }
 // rendering edit field based on user click on item
   renderItemOrEditField( todo ) {
+    var userId = todo.user
+    console.log(todo);
     if ( this.state.editing === todo._id ) {
       // Handle rendering our edit fields here.
-      return <li key={ `editing-${ todo._id }` } className="list-group-item">
+      return <li key={ `${ todo._id }` } className="list-group-item">
        <div className="flexRow">
          <div className="flexCol">
            <input
              onKeyDown={ this.handleEditField }
              type="text"
              className="form-control"
-             ref={ `title_${ todo._id }` }
-             value={this.state.item}
+            //  ref={ `title_${ todo._id }` }
+            //  value={todo.item}
              name="item"
              defaultValue={ todo.item }
            />
@@ -153,6 +153,7 @@ export default class Landing extends Component {
           {/* render edit form */}
           <ul className="list-group">
           {this.state.todos.map( ( todo) => {
+            console.log(todo)
             return this.renderItemOrEditField( todo );
           })}
         </ul>;
