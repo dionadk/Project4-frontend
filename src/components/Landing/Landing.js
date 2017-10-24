@@ -24,7 +24,7 @@ export default class Landing extends Component {
         this.state = {
           user: [],
           todos: [],
-          journels: []
+          journels: [],
         }
         console.log(this.state.user)
 
@@ -57,9 +57,78 @@ export default class Landing extends Component {
         .then(response => console.log(this.state.user))
         .catch((err) => console.log(err))
   }
+  // editing todo
+  //setting intial state
+  getInitialState() {
+    return {
+      editing: null
+    }
+  }
+// check if user is updating.
+  handleEditField( event ) {
+    if ( event.keyCode === 13 ) {
+      let target = event.target,
+          update = {}; //creating an empty object
 
+      update._id = this.state.editing;
+      update[ target.name ] = target.value;
+
+      this.handleTodoUpdate( update );
+    }
+  }
+
+  handleEditItem() {
+    let todoId = this.state.editing;
+
+    this.handleTodolUpdate({
+      _id: todoId,
+      item: this.refs[ `item_${ todoId }` ].value
+
+    })
+  }
+
+  handleTodoUpdate (update) {
+
+  }
+
+
+  toggleEditing(todoId) {
+    this.setState ({
+      editing: todoId
+    })
+  }
+// rendering edit field based on user click on item
+  renderItemOrEditField( todo ) {
+    if ( this.state.editing === todo._id ) {
+      // Handle rendering our edit fields here.
+      return <li key={ `editing-${ todo._id }` } className="list-group-item">
+       <div class="flexRow">
+         <div class="flexCol">
+           <input
+             onKeyDown={ this.handleEditField }
+             type="text"
+             className="form-control"
+             ref={ `title_${ todo._id }` }
+             name="title"
+             defaultValue={ todo.item }
+           />
+         </div>
+         <div class="flexCol">
+           <button onClick={ this.handleEditItem } label="Update Item"> </button>
+         </div>
+       </div>
+     </li>
+    } else {
+      return <li
+        onClick={ this.toggleEditing.bind( null, todo._id ) }
+        key={ todo._id }
+        className="list-group-item">
+        { `${ todo.item }`}
+      </li>;
+    }
+  }
+// end of todo edit
   render () {
-
     return(
       <div>
         <h1>Welcome {this.state.user.userName}</h1>
@@ -69,14 +138,23 @@ export default class Landing extends Component {
             <Link to="/todo">Create Todo</Link>
             <Link to="/journal">Create Journal</Link>
           </nav>
+
+          {/* List of todos */}
           <section>
           <Todo
             user={this.state.user}
           />
+          {/* render edit form */}
+          <ul className="list-group">
+          {this.state.todos.map( ( todo) => {
+            return this.renderItemOrEditField( todo );
+          })}
+        </ul>;
+
           {/* <Edit
             todo={this.state.todo}
           /> */}
-          <ul>
+          {/* <ul>
               {this.state.todos.map(todo => {
                 return (
                   <div className='todo'key={todo._id}>
@@ -85,7 +163,7 @@ export default class Landing extends Component {
                     <h6> Completed: {todo.isComplete}</h6>
                   </div>)
               })}
-            </ul>
+            </ul> */}
         </section>
         <div>
         <Journel
@@ -106,8 +184,6 @@ export default class Landing extends Component {
           </ul>
       </div>
     </div>
-
-
     )
   }
 }
