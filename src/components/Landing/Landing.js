@@ -28,6 +28,11 @@ export default class Landing extends Component {
         }
         console.log(this.state.user)
 
+        this.handleEditField = this.handleEditField.bind(this)
+        this.handleTodoUpdate = this.handleTodoUpdate.bind(this)
+        this.handleEditItem = this.handleEditItem.bind(this)
+        this.toggleEditing = this.toggleEditing.bind(this)
+
   }
 
   componentDidMount () {
@@ -90,7 +95,6 @@ export default class Landing extends Component {
   handleTodoUpdate (update) {
 
   }
-
 
   toggleEditing(todoId) {
     this.setState ({
