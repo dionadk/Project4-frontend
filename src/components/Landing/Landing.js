@@ -85,15 +85,16 @@ export default class Landing extends Component {
   handleEditItem() {
     let todoId = this.state.editing;
 
-    this.handleTodolUpdate({
+    this.handleTodoUpdate({
       _id: todoId,
       item: this.refs[ `item_${ todoId }` ].value
+      // item: this.state.item
 
     })
   }
 
   handleTodoUpdate (update) {
-
+    axios.post(`https://localhost:4000/api/${this.state.todo._id}}updateTodo`,{item: this.state.item})
   }
 
   toggleEditing(todoId) {
@@ -106,18 +107,19 @@ export default class Landing extends Component {
     if ( this.state.editing === todo._id ) {
       // Handle rendering our edit fields here.
       return <li key={ `editing-${ todo._id }` } className="list-group-item">
-       <div class="flexRow">
-         <div class="flexCol">
+       <div className="flexRow">
+         <div className="flexCol">
            <input
              onKeyDown={ this.handleEditField }
              type="text"
              className="form-control"
              ref={ `title_${ todo._id }` }
-             name="title"
+             value={this.state.item}
+             name="item"
              defaultValue={ todo.item }
            />
          </div>
-         <div class="flexCol">
+         <div className="flexCol">
            <button onClick={ this.handleEditItem } label="Update Item"> </button>
          </div>
        </div>
