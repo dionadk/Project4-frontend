@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 // import { Route } from 'react-router-dom'
-import './Signup.css';
 import Landing from '../Landing/Landing.js'
 import axios from 'axios'
 import {
@@ -12,20 +11,19 @@ import {
 } from "react-router-dom"
 
 
-export default class Signup extends Component {
+export default class Login extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
-        userName: '',
         email: '',
         password: ''
       }
 
-  this.handleSubmitSignup = this.handleSubmitSignup.bind(this)
-  this.handleCreateSignup = this.handleCreateSignup.bind(this)
+  this.handleSubmitLogin = this.handleSubmitLogin.bind(this)
+  this.handleCreateLogin = this.handleCreateLogin.bind(this)
 }
-  handleCreateSignup (e) {
+  handleCreateLogin (e) {
     e.preventDefault()
     const name = e.target.name
     this.setState ({
@@ -34,19 +32,17 @@ export default class Signup extends Component {
     console.log(name)
   }
 
-  handleSubmitSignup (e) {
+  handleSubmitLogin (e) {
     e.preventDefault()
     console.log(`state: ${this.state}`);
-    axios.post("http://localhost:4000/api/users",{
-      userName: this.state.userName,
+    axios.post("http://localhost:4000/api/login",{
       email: this.state.email,
       password: this.state.password,
     }).then((response)=>{
       if(response.data == null)
-        alert("user exists please login");
-        else
-        window.location.href= "/home/" + response.data._id;
-      console.log(response)
+      alert("Invalid user credentials");
+      else
+      window.location.href= "/home/" + response.data._id;
     }).catch((err) => {
       console.log(err)
     })
@@ -58,23 +54,20 @@ export default class Signup extends Component {
   <div className="loginBanner">
       <div className="flexrow headerBanner">
         <Link to="/">Signup</Link>
-        <Link to="/login">Login</Link>
+        <Link to="/">Login</Link>
       </div>
 
       <div className="headerContainer">
       <div id="parent">
         <div className="selectorBrd"></div>
-          <form id="form_login" onSubmit={this.handleSubmitSignup}>
+          <form id="form_login" onSubmit={this.handleSubmitLogin}>
               <div>
-                <input name="userName" type="text" placeholder="user name" onChange={this.handleCreateSignup}/>
+                <input name="email" type="text" placeholder="email" onChange={this.handleCreateLogin}/>
               </div>
               <div>
-                <input name="email" type="text" placeholder="email" onChange={this.handleCreateSignup}/>
+                <input name="password" type="password" placeholder="password" onChange={this.handleCreateLogin}/>
               </div>
-              <div>
-                <input name="password" type="password" placeholder="password" onChange={this.handleCreateSignup}/>
-              </div>
-                <button type="submit" value="signup">Signup</button>
+                <button type="submit" value="signup">Login</button>
           </form>
       </div>
       </div>

@@ -4,6 +4,8 @@ import Signup from '../Signup/Signup.js';
 import Landing from '../Landing/Landing.js';
 import Todo from '../Todo/Todo.js';
 import Edit from '../Edit/Edit.js';
+import Journel from '../Journel/Journel.js';
+import Login from '../Login/Login.js';
 import axios from 'axios';
 import {
   BrowserRouter as Router,
@@ -35,8 +37,13 @@ class App extends Component {
 
           <Switch>
 
-            <Route exact path='/signup' render={(props) => (
+            <Route exact path='/' render={(props) => (
               <Signup
+                {...props}
+                users={this.state.user} />
+            )}/>
+            <Route exact path='/login' render={(props) => (
+              <Login
                 {...props}
                 users={this.state.user} />
             )}/>

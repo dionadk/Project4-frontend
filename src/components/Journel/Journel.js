@@ -1,0 +1,72 @@
+import React, { Component } from 'react'
+import Landing from '../Landing/Landing.js'
+import axios from 'axios'
+
+
+export default class Journel extends Component {
+  constructor(props){
+    super(props)
+
+    // console.log(selectedUser)
+    // console.log(this.props.user._id)
+    // let singleUser = props.users.filter(item => item._id === selectedUser)
+    this.state = {
+        moment: '',
+        place: '',
+        image: '',
+        date: ''
+      }
+
+    this.handleSubmitJournel = this.handleSubmitJournel.bind(this)
+    this.handleCreateJournel = this.handleCreateJournel.bind(this)
+  }
+
+  handleCreateJournel (e) {
+    e.preventDefault()
+    const name = e.target.name
+    console.log(name)
+    this.setState ({
+      [name]: e.target.value,
+      user: this.props.user._id
+    })
+    console.log(this.state)
+  }
+
+  handleSubmitJournel (e) {
+    e.preventDefault()
+    axios.post("http://localhost:4000/api/journels",{
+      moment: this.state.moment,
+      place: this.state.place,
+      image: this.state.image,
+      date: this.state.date,
+      user: this.state.user,
+    }).then((response)=>{
+      console.log(response)
+      // window.location.href= "/home/" + response.data._id;
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
+
+
+
+  render(){
+
+      return(
+        <div>
+        <h5>Create Journel</h5>
+        <div>
+          <form onSubmit={this.handleSubmitJournel}>
+            <input name="moment" type="text" placeholder="moment" onChange={this.handleCreateJournel} />
+            <input name="place" type="text" placeholder="place" onChange={this.handleCreateJournel} />
+            <input name="image" type="text" placeholder="image" onChange={this.handleCreateJournel} />
+            <input name="date" type="date" onChange={this.handleCreateJournel}/>
+            <button type='submit'>Create Journel</button>
+          </form>
+        </div>
+
+        </div>
+
+      )
+    }
+  }

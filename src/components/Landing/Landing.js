@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import Signup from '../Signup/Signup.js'
 import Todo from '../Todo/Todo.js';
 import Edit from '../Edit/Edit.js';
+import Journel from '../Journel/Journel.js';
+
 import axios from 'axios'
 import {
   BrowserRouter as Router,
@@ -10,7 +12,6 @@ import {
   Redirect,
   Switch
 } from "react-router-dom"
-
 
 export default class Landing extends Component {
   constructor(props){
@@ -22,9 +23,8 @@ export default class Landing extends Component {
     let singleUser = props.users.filter(item => item._id === selectedUser)
         this.state = {
           user: [],
-          todos: []
-
-
+          todos: [],
+          journels: []
         }
         console.log(this.state.user)
 
@@ -49,11 +49,14 @@ export default class Landing extends Component {
         .then(response => console.log(this.state.user))
         .catch((err) => console.log(err))
 
-
+    axios.get(`http://localhost:4000/api/users/${selectedUser}/journels`)
+    // .then(response => console.log(response.data.userName))
+        .then(response => this.setState({
+          journels: response.data
+        }))
+        .then(response => console.log(this.state.user))
+        .catch((err) => console.log(err))
   }
-
-
-
 
   render () {
 
@@ -84,8 +87,26 @@ export default class Landing extends Component {
               })}
             </ul>
         </section>
-
+        <div>
+        <Journel
+          user={this.state.user}
+        />
+        <ul>
+            {this.state.journels.map(journel => {
+              return (
+                <div className='journel' key={journel._id}>
+                  <Link to={`/home/${this.state.user._id}/updateJournel`}>{journel.moment} (edit) (delete)</Link>
+                  <div>
+                    {journel.place}
+                    {journel.image}
+                    {journel.date}
+                  </div>
+                </div>
+            )})}
+          </ul>
       </div>
+    </div>
+
 
     )
   }
