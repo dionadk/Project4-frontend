@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Signup from '../Signup/Signup.js';
 import Landing from '../Landing/Landing.js';
-import Edit from '../Edit/Edit.js';
+import Journel from '../Journel/Journel.js';
 import Login from '../Login/Login.js';
 // import axios from 'axios';
 import {
@@ -46,21 +46,18 @@ class App extends Component {
             )}/>
 
             <Route exact path='/home/:_id' render={(props) => (
-
               <Landing
                 {...props}
                 users={this.state.users}
               />
             )}/>
 
-            <Route exact path="/home/:_id/updateTodo" render={(props) => (
-              <Edit
+            <Route exact path='/home/:_id/createJournels' render={(props) => (
+              <Journel
                 {...props}
-                user={this.state.users}
+                users={this.state.users}
               />
-            )} />
-
-
+            )}/>
             {/* <Route path='/login' render={() => (
               <Login />
             )}/> */}

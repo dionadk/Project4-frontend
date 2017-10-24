@@ -5,8 +5,14 @@ import axios from 'axios'
 export default class Journel extends Component {
   constructor(props){
     super(props)
+        // let selectedUser = this.props.match.params._id
 
     this.state = {
+        // user: {
+        //   _id: null,
+        //   email: null,
+        //   userName: null
+        // },
         moment: '',
         place: '',
         image: '',
@@ -19,11 +25,12 @@ export default class Journel extends Component {
 
   handleCreateJournel (e) {
     e.preventDefault()
+    let selectedUser = this.props.match.params._id
     const name = e.target.name
     console.log(name)
     this.setState ({
       [name]: e.target.value,
-      user: this.props.user._id
+      user: selectedUser
     })
     console.log(this.state)
   }
@@ -38,7 +45,7 @@ export default class Journel extends Component {
       user: this.state.user,
     }).then((response)=>{
       console.log(response)
-      // window.location.href= "/home/" + response.data._id;
+      window.location.href= "/home/" + response.data.user;
     }).catch((err) => {
       console.log(err)
     })

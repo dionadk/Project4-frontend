@@ -18,30 +18,38 @@ export default class Landing extends Component {
     console.log(props)
     // let singleUser = props.users.filter(item => item._id === selectedUser)
         this.state = {
-          user: [], // this should probably not be array
-          /* user: {
+          user: {
             _id: null,
             email: null,
-            userName: null,
-          } */
+            userName: null
+          },
           todos: [],
           journels: [],
-          editing: null, // *** maybe editingTodoId
-          item: ''
+          editing: null,
+          editingJournel: null, // *** maybe editingTodoId
+          item: '',
+          moment: '',
+          place: '',
+          image: '',
+          date: ''
         }
         console.log(this.state.user)
-
+        // handle edit todo functions
         this.handleEditField = this.handleEditField.bind(this)
         this.handleEditItem = this.handleEditItem.bind(this)
         this.toggleEditing = this.toggleEditing.bind(this)
         this.handleDeleteItem = this.handleDeleteItem.bind(this)
+        // handle edit journel functions
+        this.handleEditJournelField = this.handleEditJournelField.bind(this)
+        this.handleEditJournelItem = this.handleEditJournelItem.bind(this)
+        this.toggleJournelEditing = this.toggleJournelEditing.bind(this)
+        this.handleDeleteJournel = this.handleDeleteJournel.bind(this)
 
   }
 
   componentDidMount () {
     let selectedUser = this.props.match.params._id
     axios.get(`http://localhost:4000/api/users/${selectedUser}`)
-    // .then(response => console.log(response.data.userName))
          .then(response => {
            console.log(response) // ***Maybe something unexpected here with state
            this.setState({
@@ -60,7 +68,7 @@ export default class Landing extends Component {
         .catch((err) => console.log(err))
 
     axios.get(`http://localhost:4000/api/users/${selectedUser}/journels`)
-    // .then(response => console.log(response.data.userName))
+
         .then(response => this.setState({
           journels: response.data
         }))
@@ -68,12 +76,6 @@ export default class Landing extends Component {
         .catch((err) => console.log(err))
   }
   // editing todo
-  //setting intial state
-  // getInitialState() {
-  //   return {
-  //     editing: null
-  //   }
-  // }
 // check if user is updating.
   handleEditField( event ) {
     if ( event.keyCode === 13 ) {
@@ -94,7 +96,9 @@ export default class Landing extends Component {
     let todoId = this.state.editing;
     console.log(todoId)
     console.log(this.state.item)
-    axios.post(`http://localhost:4000/api/todos/${this.state.editing}/updatetodo`,{item: this.state.item})
+    axios.post(`http://localhost:4000/api/todos/${this.state.editing}/updatetodo`,{
+      item: this.state.item
+    })
   }
 
   handleDeleteItem() {
@@ -143,6 +147,107 @@ export default class Landing extends Component {
     }
   }
 // end of todo edit
+
+// editing journel
+// check if user is updating.
+handleEditJournelField( event ) {
+  if ( event.keyCode === 13 ) {
+    let name = event.target.name
+    let update = {}
+    update._id = this.state.editing;
+    update[ event.target.name ] = event.target.value;
+    console.log(update[ event.target.name ])
+        this.setState ({
+          [name]: update[ event.target.name ]
+        },_ => console.log(this.state, update))
+    console.log(update[ event.target.name ])
+  }
+}
+
+handleEditJournelItem() {
+  console.log("this is not happeing")
+  let journelId = this.state.editingJournel;
+  console.log(journelId)
+  // console.log(this.state.item)
+  axios.post(`http://localhost:4000/api/journels/${this.state.editingJournel}/updatejournel`,{
+    moment: this.state.item,
+    place: this.state.place,
+    image: this.state.image,
+    date: this.state.date
+  })
+}
+
+handleDeleteJournel() {
+  let journelId = this.state.editingJournel;
+  console.log(journelId)
+  // console.log(this.state.item)
+  axios.post(`http://localhost:4000/api/journels/${this.state.editingJournel}/deletejournel`)
+}
+
+toggleJournelEditing(journelId) {
+  this.setState ({
+    editingJournel: journelId
+  })
+}
+// rendering edit field based on user click on item
+renderItemOrEditJournel( journel ) {
+  // var userId = todo.user
+  console.log(journel);
+  if ( this.state.editingJournel === journel._id ) {
+    // Handle rendering edit fields here.
+    return <li key={ `${ journel._id }` } className="list-group-item">
+     <div className="flexRow">
+       <div className="flexCol">
+         <input
+           onKeyDown={ this.handleEditJournelField }
+           type="text"
+           className="form-control"
+          //  value={todo.item}
+           name="moment"
+           defaultValue={ journel.moment }
+         />
+         <input
+           onKeyDown={ this.handleEditJournelField }
+           type="text"
+           className="form-control"
+          //  value={todo.item}
+           name="place"
+           defaultValue={ journel.place }
+         />
+         <input
+           onKeyDown={ this.handleEditJournelField }
+           type="text"
+           className="form-control"
+          //  value={todo.item}
+           name="image"
+           defaultValue={ journel.image }
+         />
+         <input
+           onKeyDown={ this.handleEditJournelField }
+           type="text"
+           className="form-control"
+          //  value={todo.item}
+           name="date"
+           defaultValue={ journel.date }
+         />
+       </div>
+       <div className="flexCol">
+         <button onClick={ this.handleEditJournelItem } label="Update Journel"> Update</button>
+         <button onClick={ this.handleDeleteJournel } label="Delete Journel">Delete </button>
+       </div>
+     </div>
+   </li>
+  } else {
+    return <li
+      onClick={ this.toggleJournelEditing.bind( null, journel._id ) }
+      key={ journel._id }
+      className="list-group-item">
+      { `${ journel.moment }`} at { `${ journel.place }`}
+
+    </li>;
+  }
+}
+// end of journel edit
   render () {
     return(
       <div>
@@ -151,7 +256,7 @@ export default class Landing extends Component {
           <nav>
             <Link to="/home">Home</Link>
             <Link to="/todo">Create Todo</Link>
-            <Link to="/journal">Create Journal</Link>
+            <Link to={`/home/${this.state.user._id}/createJournels`}>Create Journal</Link>
           </nav>
           {/* List of todos */}
           <section>
@@ -165,39 +270,21 @@ export default class Landing extends Component {
             return this.renderItemOrEditField( todo );
           })}
         </ul>;
-
-          {/* <Edit
-            todo={this.state.todo}
-          /> */}
-          {/* <ul>
-              {this.state.todos.map(todo => {
-                return (
-                  <div className='todo'key={todo._id}>
-                    <Link to={`/home/${this.state.user._id}/updateTodo`}>{todo.item} (edit) (delete)</Link>
-
-                    <h6> Completed: {todo.isComplete}</h6>
-                  </div>)
-              })}
-            </ul> */}
         </section>
-        <div>
-        <Journel
-          user={this.state.user}
-        />
-        <ul>
-            {this.state.journels.map(journel => {
-              return (
-                <div className='journel' key={journel._id}>
-                  <Link to={`/home/${this.state.user._id}/updateJournel`}>{journel.moment} (edit) (delete)</Link>
-                  <div>
-                    {journel.place}
-                    {journel.image}
-                    {journel.date}
-                  </div>
-                </div>
-            )})}
-        </ul>
-      </div>
+
+          <h2>Journel Entries</h2>
+          <section>
+            {/* <Journel
+              user={this.state.user}
+            /> */}
+          {/* render edit form */}
+          <ul className="list-group">
+          {this.state.journels.map( ( journel) => {
+            console.log(journel)
+            return this.renderItemOrEditJournel( journel );
+          })}
+        </ul>;
+        </section>
     </div>
     )
   }
