@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Landing from '../Landing/Landing.js'
 import axios from 'axios'
 
 
@@ -7,9 +6,6 @@ export default class Journel extends Component {
   constructor(props){
     super(props)
 
-    // console.log(selectedUser)
-    // console.log(this.props.user._id)
-    // let singleUser = props.users.filter(item => item._id === selectedUser)
     this.state = {
         moment: '',
         place: '',
@@ -48,25 +44,21 @@ export default class Journel extends Component {
     })
   }
 
-
-
-  render(){
+  render () {
 
       return(
         <div>
-        <h5>Create Journel</h5>
-        <div>
-          <form onSubmit={this.handleSubmitJournel}>
-            <input name="moment" type="text" placeholder="moment" onChange={this.handleCreateJournel} />
-            <input name="place" type="text" placeholder="place" onChange={this.handleCreateJournel} />
-            <input name="image" type="text" placeholder="image" onChange={this.handleCreateJournel} />
-            <input name="date" type="date" onChange={this.handleCreateJournel}/>
-            <button type='submit'>Create Journel</button>
-          </form>
+          <h5>Create Journel</h5>
+            <div>
+              <form onSubmit={this.handleSubmitJournel}>
+                <input name="moment" type="text" placeholder="moment" onChange={this.handleCreateJournel} />
+                <input name="place" type="text" placeholder="place" onChange={this.handleCreateJournel} />
+                <input name="image" type="text" placeholder="image" onChange={this.handleCreateJournel} />
+                <input name="date" type="date" onChange={this.handleCreateJournel}/>
+                <button type='submit'>Create Journel</button>
+              </form>
+            </div>
         </div>
-
-        </div>
-
       )
     }
   }

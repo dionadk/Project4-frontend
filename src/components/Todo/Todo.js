@@ -1,15 +1,11 @@
-import React, { Component } from 'react'
-import Landing from '../Landing/Landing.js'
-import axios from 'axios'
+import React, { Component } from 'react';
+import axios from 'axios';
 
 
 export default class Todo extends Component {
   constructor(props){
     super(props)
 
-    // console.log(selectedUser)
-    // console.log(this.props.user._id)
-    // let singleUser = props.users.filter(item => item._id === selectedUser)
     this.state = {
         item: '',
         isCompleted: false
@@ -42,23 +38,19 @@ export default class Todo extends Component {
     })
   }
 
+  render () {
 
-
-  render(){
-
-      return(
+      return (
         <div>
-        <h5>Create Todo</h5>
-        <div>
-          <form onSubmit={this.handleSubmitTodo}>
-            <input name="item" type="text" placeholder="todo" onChange={this.handleCreateTodo} />
-            <input name="isCompleted" id="checkBox" type="checkbox" placeholder="checkbox" onChange={this.handleCreateTodo} />
-            <button type='submit'>Create Todo</button>
-          </form>
+          <h5>Create Todo</h5>
+          <div>
+            <form onSubmit={this.handleSubmitTodo}>
+              <input name="item" type="text" placeholder="todo" onChange={this.handleCreateTodo} />
+              <input name="isCompleted" id="checkBox" type="checkbox" placeholder="checkbox" onChange={this.handleCreateTodo} />
+              <button type='submit'>Create Todo</button>
+            </form>
+          </div>
         </div>
-
-        </div>
-
       )
     }
   }

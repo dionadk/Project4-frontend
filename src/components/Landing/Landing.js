@@ -1,13 +1,9 @@
-import React, { Component } from 'react'
-import Signup from '../Signup/Signup.js'
+import React, { Component } from 'react';
 import Todo from '../Todo/Todo.js';
-import Edit from '../Edit/Edit.js';
 import Journel from '../Journel/Journel.js';
 
 import axios from 'axios'
 import {
-  BrowserRouter as Router,
-  Route,
   Link,
   Redirect,
   Switch
@@ -20,31 +16,38 @@ export default class Landing extends Component {
 
     console.log(selectedUser)
     console.log(props)
-    let singleUser = props.users.filter(item => item._id === selectedUser)
+    // let singleUser = props.users.filter(item => item._id === selectedUser)
         this.state = {
-          user: [],
+          user: [], // this should probably not be array
+          /* user: {
+            _id: null,
+            email: null,
+            userName: null,
+          } */
           todos: [],
           journels: [],
+          editing: null, // *** maybe editingTodoId
           item: ''
-
         }
         console.log(this.state.user)
 
         this.handleEditField = this.handleEditField.bind(this)
-
         this.handleEditItem = this.handleEditItem.bind(this)
         this.toggleEditing = this.toggleEditing.bind(this)
+        this.handleDeleteItem = this.handleDeleteItem.bind(this)
 
   }
 
   componentDidMount () {
-    // console.log(this.state.singleUser)
     let selectedUser = this.props.match.params._id
     axios.get(`http://localhost:4000/api/users/${selectedUser}`)
     // .then(response => console.log(response.data.userName))
-         .then(response => this.setState({
-           user: response.data
-         }))
+         .then(response => {
+           console.log(response) // ***Maybe something unexpected here with state
+           this.setState({
+             user: response.data
+           })
+         })
          .then(response => console.log(this.state.user))
          .catch((err) => console.log(err))
 
@@ -66,23 +69,23 @@ export default class Landing extends Component {
   }
   // editing todo
   //setting intial state
-  getInitialState() {
-    return {
-      editing: null
-    }
-  }
+  // getInitialState() {
+  //   return {
+  //     editing: null
+  //   }
+  // }
 // check if user is updating.
   handleEditField( event ) {
     if ( event.keyCode === 13 ) {
-      let name = event.target.value
+      let name = event.target.name
       let update = {}
       update._id = this.state.editing;
       update[ event.target.name ] = event.target.value;
       console.log(update[ event.target.name ])
           this.setState ({
             [name]: update[ event.target.name ]
-          })
-          console.log(update[ event.target.name ])
+          },_ => console.log(this.state, update))
+      console.log(update[ event.target.name ])
     }
   }
 
@@ -91,8 +94,14 @@ export default class Landing extends Component {
     let todoId = this.state.editing;
     console.log(todoId)
     console.log(this.state.item)
-    axios.post(`http://localhost:4000/api/todos/${this.state.editing}/updateTodo`,{item: this.state.name})
+    axios.post(`http://localhost:4000/api/todos/${this.state.editing}/updatetodo`,{item: this.state.item})
+  }
 
+  handleDeleteItem() {
+    let todoId = this.state.editing;
+    console.log(todoId)
+    console.log(this.state.item)
+    axios.post(`http://localhost:4000/api/todos/${this.state.editing}/deletetodo`)
   }
 
   toggleEditing(todoId) {
@@ -102,10 +111,10 @@ export default class Landing extends Component {
   }
 // rendering edit field based on user click on item
   renderItemOrEditField( todo ) {
-    var userId = todo.user
+    // var userId = todo.user
     console.log(todo);
     if ( this.state.editing === todo._id ) {
-      // Handle rendering our edit fields here.
+      // Handle rendering edit fields here.
       return <li key={ `${ todo._id }` } className="list-group-item">
        <div className="flexRow">
          <div className="flexCol">
@@ -113,14 +122,14 @@ export default class Landing extends Component {
              onKeyDown={ this.handleEditField }
              type="text"
              className="form-control"
-            //  ref={ `title_${ todo._id }` }
             //  value={todo.item}
              name="item"
              defaultValue={ todo.item }
            />
          </div>
          <div className="flexCol">
-           <button onClick={ this.handleEditItem } label="Update Item"> </button>
+           <button onClick={ this.handleEditItem } label="Update Item"> Update</button>
+           <button onClick={ this.handleDeleteItem } label="Delete Item">Delete </button>
          </div>
        </div>
      </li>
@@ -144,7 +153,6 @@ export default class Landing extends Component {
             <Link to="/todo">Create Todo</Link>
             <Link to="/journal">Create Journal</Link>
           </nav>
-
           {/* List of todos */}
           <section>
           <Todo
@@ -188,7 +196,7 @@ export default class Landing extends Component {
                   </div>
                 </div>
             )})}
-          </ul>
+        </ul>
       </div>
     </div>
     )

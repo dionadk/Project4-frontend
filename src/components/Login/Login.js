@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
-// import { Route } from 'react-router-dom'
-import Landing from '../Landing/Landing.js'
 import axios from 'axios'
 import {
-  BrowserRouter as Router,
-  Route,
   Link,
   Redirect,
   Switch
@@ -12,7 +8,6 @@ import {
 
 
 export default class Login extends Component {
-
   constructor(props) {
     super(props)
     this.state = {
@@ -58,21 +53,20 @@ export default class Login extends Component {
       </div>
 
       <div className="headerContainer">
-      <div id="parent">
-        <div className="selectorBrd"></div>
-          <form id="form_login" onSubmit={this.handleSubmitLogin}>
-              <div>
-                <input name="email" type="text" placeholder="email" onChange={this.handleCreateLogin}/>
-              </div>
-              <div>
-                <input name="password" type="password" placeholder="password" onChange={this.handleCreateLogin}/>
-              </div>
-                <button type="submit" value="signup">Login</button>
-          </form>
-      </div>
+        <div id="parent">
+          <div className="selectorBrd"></div>
+            <form id="form_login" onSubmit={this.handleSubmitLogin}>
+                <div>
+                  <input name="email" type="text" placeholder="email" onChange={this.handleCreateLogin}/>
+                </div>
+                <div>
+                  <input name="password" type="password" placeholder="password" onChange={this.handleCreateLogin}/>
+                </div>
+                  <button type="submit" value="signup">Login</button>
+            </form>
+        </div>
       </div>
   </div>
     )
   }
-
 }

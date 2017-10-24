@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
 // import { Route } from 'react-router-dom'
 import './Signup.css';
-import Landing from '../Landing/Landing.js'
 import axios from 'axios'
 import {
-  BrowserRouter as Router,
-  Route,
   Link,
   Redirect,
   Switch
