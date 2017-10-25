@@ -1,0 +1,138 @@
+<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+
+.flexmargin {
+    margin-bottom: 20px;
+}
+
+.flexwrap {
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.flexrow {
+    display: flex;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+}
+
+.flexrow-stretch {
+    display: flex;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    height: 100%;
+}
+
+.flexcol {
+    display: flex;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.flexleft {
+    display: flex;
+    -ms-flex: 0 0 auto;
+    -webkit-flex: 0 0 auto;
+    flex: 0 0 auto;
+    justify-content: flex-start;
+    height: 100%;
+}
+
+.flexright {
+    display: flex;
+    -ms-flex: 0 0 auto;
+    -webkit-flex: 0 0 auto;
+    flex: 0 0 auto;
+    justify-content: flex-end;
+}
+
+.flexcenter {
+    display: flex;
+    -ms-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    justify-content: center;
+}
+
+.flextab {
+    display: flex;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    height: 100%;
+}
+
+.flexstretch {
+    display: flex;
+    flex-grow: 4;
+}
+
+nav {
+    height: 70px;
+    background-color: rgba(21, 20, 20, 0.7);
+    top: 0;
+    right: 0;
+    left: 0;
+}
+.navigation{
+  margin-right: 30px;
+}
+
+.menuItem {
+    color: rgba(255, 255, 255, 0.78);
+    margin: 30px 20px;
+    height: 38px;
+    font-family: sans-serif;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+ul{
+  list-style: none;
+}
+li{
+    height: 45px;
+    padding-top: 10px;
+    font-size: 22px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.15);
+}
+.editbox{
+  background-color: red;
+}
+.editJournel{
+  display: grid;
+}
+.menuItem:hover {
+    border-bottom: 3px solid #d61515;
+}
+.todolist{
+  width: 400px;
+  background-color: #fff;
+  margin: 0 30px;
+  min-height: 500px;
+  box-shadow: 2px 2px 5px gray;
+}
+.todoLbl{
+  margin: 10px;
+  font-size: 30px;
+  color: Black;
+}
+.todologo{
+  width: 50px;
+  height: 50px;
+}
+.logo{
+  font-family: 'Kaushan Script', cursive;
+  font-size: 40px;
+  margin:0 10px;
+  color:#fff;
+}
+
+nav{
+
+}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Landing.css';
 import Todo from '../Todo/Todo.js';
 import Journel from '../Journel/Journel.js';
 
@@ -13,10 +14,8 @@ export default class Landing extends Component {
   constructor(props){
     super(props)
     let selectedUser = this.props.match.params._id
+    // console.log(selectedUser)
 
-    console.log(selectedUser)
-    console.log(props)
-    // let singleUser = props.users.filter(item => item._id === selectedUser)
         this.state = {
           user: {
             _id: null,
@@ -33,7 +32,6 @@ export default class Landing extends Component {
           image: '',
           date: ''
         }
-        console.log(this.state.user)
         // handle edit todo functions
         this.handleEditField = this.handleEditField.bind(this)
         this.handleEditItem = this.handleEditItem.bind(this)
@@ -78,24 +76,18 @@ export default class Landing extends Component {
   // editing todo
 // check if user is updating.
   handleEditField( event ) {
-    if ( event.keyCode === 13 ) {
       let name = event.target.name
       let update = {}
       update._id = this.state.editing;
       update[ event.target.name ] = event.target.value;
-      console.log(update[ event.target.name ])
           this.setState ({
             [name]: update[ event.target.name ]
           },_ => console.log(this.state, update))
-      console.log(update[ event.target.name ])
-    }
   }
 
   handleEditItem() {
     console.log("this is not happeing")
     let todoId = this.state.editing;
-    console.log(todoId)
-    console.log(this.state.item)
     axios.post(`http://localhost:4000/api/todos/${this.state.editing}/updatetodo`,{
       item: this.state.item
     })
@@ -103,8 +95,6 @@ export default class Landing extends Component {
 
   handleDeleteItem() {
     let todoId = this.state.editing;
-    console.log(todoId)
-    console.log(this.state.item)
     axios.post(`http://localhost:4000/api/todos/${this.state.editing}/deletetodo`)
   }
 
@@ -115,18 +105,15 @@ export default class Landing extends Component {
   }
 // rendering edit field based on user click on item
   renderItemOrEditField( todo ) {
-    // var userId = todo.user
-    console.log(todo);
     if ( this.state.editing === todo._id ) {
       // Handle rendering edit fields here.
       return <li key={ `${ todo._id }` } className="list-group-item">
        <div className="flexRow">
          <div className="flexCol">
            <input
-             onKeyDown={ this.handleEditField }
+             onChange={ this.handleEditField }
              type="text"
              className="form-control"
-            //  value={todo.item}
              name="item"
              defaultValue={ todo.item }
            />
@@ -151,26 +138,24 @@ export default class Landing extends Component {
 // editing journel
 // check if user is updating.
 handleEditJournelField( event ) {
-  if ( event.keyCode === 13 ) {
+
     let name = event.target.name
     let update = {}
-    update._id = this.state.editing;
+    update._id = this.state.editingJournel;
     update[ event.target.name ] = event.target.value;
-    console.log(update[ event.target.name ])
+    // console.log(update[ event.target.name ])
         this.setState ({
           [name]: update[ event.target.name ]
         },_ => console.log(this.state, update))
-    console.log(update[ event.target.name ])
-  }
+
 }
 
 handleEditJournelItem() {
   console.log("this is not happeing")
   let journelId = this.state.editingJournel;
-  console.log(journelId)
-  // console.log(this.state.item)
+
   axios.post(`http://localhost:4000/api/journels/${this.state.editingJournel}/updatejournel`,{
-    moment: this.state.item,
+    moment: this.state.moment,
     place: this.state.place,
     image: this.state.image,
     date: this.state.date
@@ -180,7 +165,6 @@ handleEditJournelItem() {
 handleDeleteJournel() {
   let journelId = this.state.editingJournel;
   console.log(journelId)
-  // console.log(this.state.item)
   axios.post(`http://localhost:4000/api/journels/${this.state.editingJournel}/deletejournel`)
 }
 
@@ -191,50 +175,26 @@ toggleJournelEditing(journelId) {
 }
 // rendering edit field based on user click on item
 renderItemOrEditJournel( journel ) {
-  // var userId = todo.user
   console.log(journel);
   if ( this.state.editingJournel === journel._id ) {
     // Handle rendering edit fields here.
     return <li key={ `${ journel._id }` } className="list-group-item">
      <div className="flexRow">
        <div className="flexCol">
-         <input
-           onKeyDown={ this.handleEditJournelField }
-           type="text"
-           className="form-control"
-          //  value={todo.item}
-           name="moment"
-           defaultValue={ journel.moment }
-         />
-         <input
-           onKeyDown={ this.handleEditJournelField }
-           type="text"
-           className="form-control"
-          //  value={todo.item}
-           name="place"
-           defaultValue={ journel.place }
-         />
-         <input
-           onKeyDown={ this.handleEditJournelField }
-           type="text"
-           className="form-control"
-          //  value={todo.item}
-           name="image"
-           defaultValue={ journel.image }
-         />
-         <input
-           onKeyDown={ this.handleEditJournelField }
-           type="text"
-           className="form-control"
-          //  value={todo.item}
-           name="date"
-           defaultValue={ journel.date }
-         />
+         <form className="editJournel">
+           <input onChange={ this.handleEditJournelField } type="text" name="moment" defaultValue={ journel.moment } />
+           <input onChange={ this.handleEditJournelField } type="text" name="place" defaultValue={ journel.place } />
+           <input onChange={ this.handleEditJournelField } type="text" name="image" defaultValue={ journel.image } />
+           <input onChange={ this.handleEditJournelField } type="text" name="date" defaultValue={ journel.date } />
+           <div className="updateBtn">
+             <button onClick={ this.handleEditJournelItem } label="Update Journel"> Update</button>
+           </div>
+           <div className="deleteBtn">
+             <button onClick={ this.handleDeleteJournel } label="Delete Journel">Delete </button>
+           </div>
+        </form>
        </div>
-       <div className="flexCol">
-         <button onClick={ this.handleEditJournelItem } label="Update Journel"> Update</button>
-         <button onClick={ this.handleDeleteJournel } label="Delete Journel">Delete </button>
-       </div>
+
      </div>
    </li>
   } else {
@@ -242,8 +202,7 @@ renderItemOrEditJournel( journel ) {
       onClick={ this.toggleJournelEditing.bind( null, journel._id ) }
       key={ journel._id }
       className="list-group-item">
-      { `${ journel.moment }`} at { `${ journel.place }`}
-
+      { `${ journel.moment }`} at {`${ journel.place }`}
     </li>;
   }
 }
@@ -251,40 +210,52 @@ renderItemOrEditJournel( journel ) {
   render () {
     return(
       <div>
+        <nav>
+            <div class="flexrow">
+                <div class="flexstretch">
+                    <label className="logo">Jurno</label>
+                </div>
+                <div class="flexright navigation">
+                    <a id="contactLnk" class="menuItem" href="/">LOGOUT</a>
+                    <Link id="contactLnk" class="menuItem" to={`/home/${this.state.user._id}/createJournels`}>CREATE JOURNEL</Link>
+                </div>
+            </div>
+        </nav>
         <h1>Welcome {this.state.user.userName}</h1>
 
-          <nav>
-            <Link to="/home">Home</Link>
-            <Link to="/todo">Create Todo</Link>
-            <Link to={`/home/${this.state.user._id}/createJournels`}>Create Journal</Link>
-          </nav>
-          {/* List of todos */}
-          <section>
-          <Todo
-            user={this.state.user}
-          />
-          {/* render edit form */}
-          <ul className="list-group">
-          {this.state.todos.map( ( todo) => {
-            console.log(todo)
-            return this.renderItemOrEditField( todo );
-          })}
-        </ul>;
-        </section>
+          <div className="flexrow">
+            <div className="flexcol">
+              <section>
+              {/* render edit journel form */}
+              <ul className="list-group">
+              {this.state.journels.map( ( journel) => {
+                console.log(journel)
+                return this.renderItemOrEditJournel( journel );
+              })}
+            </ul>
+            </section>
+            </div>
+              <div className="flexcol todolist">
+                <div className="flexrow">
+                  <img className="todologo" src="https://i.imgur.com/JsYjyXO.png"/>
+                  <label className="todoLbl">Checklist</label>
+                </div>
+                <section>
 
-          <h2>Journel Entries</h2>
-          <section>
-            {/* <Journel
-              user={this.state.user}
-            /> */}
-          {/* render edit form */}
-          <ul className="list-group">
-          {this.state.journels.map( ( journel) => {
-            console.log(journel)
-            return this.renderItemOrEditJournel( journel );
-          })}
-        </ul>;
-        </section>
+                  {/* create todo form */}
+                <Todo
+                  user={this.state.user}
+                />
+                {/* render edit todo form */}
+                <ul className="list-group">
+                {this.state.todos.map( ( todo) => {
+                  console.log(todo)
+                  return this.renderItemOrEditField( todo );
+                })}
+                </ul>
+                </section>
+              </div>
+          </div>
     </div>
     )
   }

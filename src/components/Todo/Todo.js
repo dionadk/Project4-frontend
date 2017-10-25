@@ -42,12 +42,11 @@ export default class Todo extends Component {
 
       return (
         <div>
-          <h5>Create Todo</h5>
           <div>
-            <form onSubmit={this.handleSubmitTodo}>
+            <form className="flexrow" onSubmit={this.handleSubmitTodo}>
               <input name="item" type="text" placeholder="todo" onChange={this.handleCreateTodo} />
-              <input name="isCompleted" id="checkBox" type="checkbox" placeholder="checkbox" onChange={this.handleCreateTodo} />
-              <button type='submit'>Create Todo</button>
+              {/* <input name="isCompleted" id="checkBox" type="checkbox" placeholder="checkbox" onChange={this.handleCreateTodo} /> */}
+              <button type='submit'>ADD</button>
             </form>
           </div>
         </div>
