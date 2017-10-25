@@ -230,8 +230,8 @@ renderItemOrEditJournel( journel ) {
                     <label className="logo">Jurno</label>
                 </div>
                 <div className="flexright navigation">
-                    <a id="contactLnk" className="menuItem" href="/">LOGOUT</a>
-                    <Link id="contactLnk" className="menuItem" to={`/home/${this.state.user._id}/createJournels`}>CREATE JOURNEL</Link>
+                    <a id="contactLnk" className="menuItem" href="/Project4-frontend">LOGOUT</a>
+                    <Link id="contactLnk" className="menuItem" to={`/Project4-frontend/home/${this.state.user._id}/createJournels`}>CREATE JOURNEL</Link>
                 </div>
             </div>
         </nav>

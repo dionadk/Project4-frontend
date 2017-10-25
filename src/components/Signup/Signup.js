@@ -54,8 +54,8 @@ export default class Signup extends Component {
     return (
   <div className="loginBanner">
       <div className="flexrow headerBanner">
-        <Link to="/">Signup</Link>
-        <Link to="/login">Login</Link>
+        <Link to="/Project4-frontend">Signup</Link>
+        <Link to="/Project4-frontend/login">Login</Link>
       </div>
 
       <div className="headerContainer">

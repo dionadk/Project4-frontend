@@ -34,25 +34,25 @@ class App extends Component {
 
           <Switch>
 
-            <Route exact path='/' render={(props) => (
+            <Route exact path='/Project4-frontend' render={(props) => (
               <Signup
                 {...props}
                 users={this.state.user} />
             )}/>
-            <Route exact path='/login' render={(props) => (
+            <Route exact path='/Project4-frontend/login' render={(props) => (
               <Login
                 {...props}
                 users={this.state.user} />
             )}/>
 
-            <Route exact path='/home/:_id' render={(props) => (
+            <Route exact path='/Project4-frontend/home/:_id' render={(props) => (
               <Landing
                 {...props}
                 users={this.state.users}
               />
             )}/>
 
-            <Route exact path='/home/:_id/createJournels' render={(props) => (
+            <Route exact path='/Project4-frontend/home/:_id/createJournels' render={(props) => (
               <Journel
                 {...props}
                 users={this.state.users}
