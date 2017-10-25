@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Landing.css';
 import Todo from '../Todo/Todo.js';
 import Journel from '../Journel/Journel.js';
+import Group from '../Group/Group.js';
 
 import axios from 'axios'
 import {
@@ -37,11 +38,13 @@ export default class Landing extends Component {
         this.handleEditItem = this.handleEditItem.bind(this)
         this.toggleEditing = this.toggleEditing.bind(this)
         this.handleDeleteItem = this.handleDeleteItem.bind(this)
+        this.handleCancelEdit = this.handleCancelEdit.bind(this)
         // handle edit journel functions
         this.handleEditJournelField = this.handleEditJournelField.bind(this)
         this.handleEditJournelItem = this.handleEditJournelItem.bind(this)
         this.toggleJournelEditing = this.toggleJournelEditing.bind(this)
         this.handleDeleteJournel = this.handleDeleteJournel.bind(this)
+
 
   }
 
@@ -103,6 +106,13 @@ export default class Landing extends Component {
       editing: todoId
     })
   }
+  handleCancelEdit (todoId) {
+    this.setState ({
+      editing: null,
+      editingJournel: null
+
+    })
+  }
 // rendering edit field based on user click on item
   renderItemOrEditField( todo ) {
     if ( this.state.editing === todo._id ) {
@@ -121,6 +131,7 @@ export default class Landing extends Component {
          <div className="flexCol">
            <button onClick={ this.handleEditItem } label="Update Item"> Update</button>
            <button onClick={ this.handleDeleteItem } label="Delete Item">Delete </button>
+           <button onClick={ this.handleCancelEdit } label="Cancel Edit">Cancel </button>
          </div>
        </div>
      </li>
@@ -192,6 +203,9 @@ renderItemOrEditJournel( journel ) {
            <div className="deleteBtn">
              <button onClick={ this.handleDeleteJournel } label="Delete Journel">Delete </button>
            </div>
+           <div>
+             <button onClick={ this.handleCancelEdit } label="Cancel Edit">Cancel </button>
+           </div>
         </form>
        </div>
 
@@ -211,13 +225,13 @@ renderItemOrEditJournel( journel ) {
     return(
       <div>
         <nav>
-            <div class="flexrow">
-                <div class="flexstretch">
+            <div className="flexrow">
+                <div className="flexstretch">
                     <label className="logo">Jurno</label>
                 </div>
-                <div class="flexright navigation">
-                    <a id="contactLnk" class="menuItem" href="/">LOGOUT</a>
-                    <Link id="contactLnk" class="menuItem" to={`/home/${this.state.user._id}/createJournels`}>CREATE JOURNEL</Link>
+                <div className="flexright navigation">
+                    <a id="contactLnk" className="menuItem" href="/">LOGOUT</a>
+                    <Link id="contactLnk" className="menuItem" to={`/home/${this.state.user._id}/createJournels`}>CREATE JOURNEL</Link>
                 </div>
             </div>
         </nav>
@@ -255,6 +269,11 @@ renderItemOrEditJournel( journel ) {
                 </ul>
                 </section>
               </div>
+          </div>
+          <div>
+            <Group
+              user={this.state.user}
+            />
           </div>
     </div>
     )

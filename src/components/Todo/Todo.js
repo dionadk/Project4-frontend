@@ -45,7 +45,7 @@ export default class Todo extends Component {
           <div>
             <form className="flexrow" onSubmit={this.handleSubmitTodo}>
               <input name="item" type="text" placeholder="todo" onChange={this.handleCreateTodo} />
-              {/* <input name="isCompleted" id="checkBox" type="checkbox" placeholder="checkbox" onChange={this.handleCreateTodo} /> */}
+              <input name="isCompleted" id="checkBox" type="checkbox" placeholder="checkbox" onChange={this.handleCreateTodo} />
               <button type='submit'>ADD</button>
             </form>
           </div>
