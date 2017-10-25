@@ -42,7 +42,7 @@ export default class Signup extends Component {
       if(response.data == null)
         alert("user exists please login");
         else
-        window.location.href= "/home/" + response.data._id;
+        window.location.href= "/Project4-frontend/home/" + response.data._id;
       console.log(response)
     }).catch((err) => {
       console.log(err)
