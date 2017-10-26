@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './Login.css';
 import axios from 'axios'
 import {
   Link,
@@ -32,7 +33,7 @@ export default class Login extends Component {
     console.log(`state: ${this.state}`);
     axios.post("http://localhost:4000/api/login",{
       email: this.state.email,
-      password: this.state.password,
+      password: this.state.password
     }).then((response)=>{
       if(response.data == null)
       alert("Invalid user credentials");
@@ -46,27 +47,69 @@ export default class Login extends Component {
   render () {
     // console.log(this.state.user)
     return (
-  <div className="loginBanner">
-      <div className="flexrow headerBanner">
-        <Link to="/">Signup</Link>
-        <Link to="/">Login</Link>
+      <div className="flexrow loginrow">
+          <div className="loginCol">
+            <label className="logo">Jurno</label>
+            <div id="parent">
+                       <form id="form_login" onSubmit={this.handleSubmitLogin}>
+                         <div className="formLoginHeader"><label>Login</label></div>
+                           <div>
+                             <input className="loginTxt" name="email" type="text" placeholder="email" onChange={this.handleCreateLogin}/>
+                           </div>
+                           {/* <div>
+                             <input name="groupEmail" type="text" placeholder="group ema" onChange={this.handleCreateLogin}/>
+                           </div> */}
+                           <div>
+                             <input className="loginTxt" name="password" type="password" placeholder="password" onChange={this.handleCreateLogin}/>
+                           </div>
+                             <button className="loginBtn" type="submit" value="signup">Login</button>
+                       </form>
+                   </div>
+                  <label className="copyrightLbl">&copy; Copyright 2017 dk Designs</label>
+          </div>
+          <div className="loginbg">
+            <div className="loginDetail">
+              <div>
+                  <div className="flexrow">
+                      <div className="flexstretch"></div>
+                      <div className="flexright navigation">
+                          <a id="contactLnk" className="menuItem" href="/">SIGNUP</a>
+                          <a id="contactLnk" className="menuItem" href="/">ABOUT US</a>
+                      </div>
+                  </div>
+              </div>
+              <div className="lblCaption">
+              <label >
+                <span className="primaryColor">Plan your trip</span><br/>
+              Jot down your moments<br/>
+              <span className="primaryColor">Share you profile to other members</span></label>
+            </div></div>
+          </div>
       </div>
-
-      <div className="headerContainer">
-        <div id="parent">
-          <div className="selectorBrd"></div>
-            <form id="form_login" onSubmit={this.handleSubmitLogin}>
-                <div>
-                  <input name="email" type="text" placeholder="email" onChange={this.handleCreateLogin}/>
-                </div>
-                <div>
-                  <input name="password" type="password" placeholder="password" onChange={this.handleCreateLogin}/>
-                </div>
-                  <button type="submit" value="signup">Login</button>
-            </form>
-        </div>
-      </div>
-  </div>
+  // <div className="loginBanner">
+  //     <div className="flexrow headerBanner">
+  //       <Link to="/">Signup</Link>
+  //       <Link to="/">Login</Link>
+  //     </div>
+  //
+  //     <div className="headerContainer">
+  //       <div id="parent">
+  //         <div className="selectorBrd"></div>
+  //           <form id="form_login" onSubmit={this.handleSubmitLogin}>
+  //               <div>
+  //                 <input name="email" type="text" placeholder="email" onChange={this.handleCreateLogin}/>
+  //               </div>
+  //               {/* <div>
+  //                 <input name="groupEmail" type="text" placeholder="group ema" onChange={this.handleCreateLogin}/>
+  //               </div> */}
+  //               <div>
+  //                 <input name="password" type="password" placeholder="password" onChange={this.handleCreateLogin}/>
+  //               </div>
+  //                 <button type="submit" value="signup">Login</button>
+  //           </form>
+  //       </div>
+  //     </div>
+  // </div>
     )
   }
 }

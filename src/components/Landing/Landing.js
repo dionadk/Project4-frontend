@@ -31,8 +31,10 @@ export default class Landing extends Component {
           moment: '',
           place: '',
           image: '',
-          date: ''
+          date: '',
+          memberEmail: null
         }
+
         // handle edit todo functions
         this.handleEditField = this.handleEditField.bind(this)
         this.handleEditItem = this.handleEditItem.bind(this)
@@ -95,6 +97,7 @@ export default class Landing extends Component {
       item: this.state.item
     })
   }
+
 
   handleDeleteItem() {
     let todoId = this.state.editing;

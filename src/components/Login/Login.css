@@ -1,0 +1,214 @@
+<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+.flexmargin {
+    margin-bottom: 20px;
+}
+
+.flexwrap {
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.flexrow {
+    display: flex;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+}
+
+.flexrow-stretch {
+    display: flex;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    height: 100%;
+}
+
+.flexcol {
+    display: flex;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+}
+
+.loginrow {
+  height: 100vh;
+}
+.loginCol{
+    height: 100%;
+    min-width: 500px;
+    width: 40%;
+    background-color: rgba(158, 158, 158, 0);
+    box-shadow: 2px 2px 15px rgba(128, 128, 128, 0.56);
+}
+.loginbg{
+    background: url("https://awol.junkee.com/wp-content/uploads/2015/11/bag-768x576.jpg");
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.loginDetail{
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(21, 20, 20, 0.7);
+  /*background: linear-gradient(141deg, rgba(255, 193, 7, 0.6) 0%, rgba(255, 152, 0, 0.3) 51%, rgba(205, 220, 57, 0.3) 75%);*/
+  /*background: linear-gradient(141deg, rgba(15, 184, 173, 0.6) 0%, rgba(31, 200, 219, 0.6) 51%, rgba(44, 181, 232, 0.6) 75%);*/
+}
+.flexleft {
+    display: flex;
+    -ms-flex: 0 0 auto;
+    -webkit-flex: 0 0 auto;
+    flex: 0 0 auto;
+    justify-content: flex-start;
+    height: 100%;
+}
+
+.flexright {
+    display: flex;
+    -ms-flex: 0 0 auto;
+    -webkit-flex: 0 0 auto;
+    flex: 0 0 auto;
+    justify-content: flex-end;
+}
+
+.flexcenter {
+    display: flex;
+    -ms-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    justify-content: center;
+}
+
+.flextab {
+    display: flex;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    height: 100%;
+}
+
+.flexstretch {
+    display: flex;
+    flex-grow: 4;
+}
+
+.mainNav {
+    height: 70px;
+    /*background-color: rgba(21, 20, 20, 0.7);*/
+    top: 0;
+    right: 0;
+    left: 0;
+}
+.navigation{    margin-right: 30px;
+    height: 90px;
+}
+
+.menuItem {
+    color: rgba(255, 255, 255, 0.78);
+    margin: 30px 20px;
+    height: 38px;
+    font-family: sans-serif;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+ul{
+  list-style: none;
+}
+li{
+    height: 45px;
+    padding-top: 10px;
+    font-size: 22px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.15);
+}
+.editbox{
+  background-color: red;
+}
+.editJournel{
+  display: grid;
+}
+.menuItem:hover {
+    border-bottom: 3px solid #d61515;
+}
+.todolist{
+  width: 400px;
+  background-color: #fff;
+  margin: 0 30px;
+  min-height: 500px;
+  box-shadow: 2px 2px 5px gray;
+}
+.todoLbl{
+  margin: 10px;
+  font-size: 30px;
+  color: Black;
+}
+.todologo{
+  width: 50px;
+  height: 50px;
+}
+.logo{
+  font-family: 'Kaushan Script', cursive;
+  font-size: 40px;
+  margin:0 10px;
+  color:black;
+}
+.copyrightLbl{
+    position: fixed;
+    bottom: 0;
+    left: 15px;
+    font-size: 14px;
+    color: rgba(158, 158, 158, 0.6);
+}
+.loginBtn{
+    font-size: 16px;
+    background-color: #E91E63;
+    border: 0;
+    padding: 10px;
+    cursor: pointer;
+    width: 130px;
+    margin-top: 20px;
+    margin-left: 265px;
+    color: #fff;
+    outline: none;
+    box-shadow: 2px 2px 5px gray;
+}
+.loginBtn:hover{
+  background-color: #F91E63;
+}
+.lblCaption{
+    color: #fff;
+    font-size: 40px;
+    height: 100%;
+    font-family: 'Ubuntu', sans-serif;
+    padding-top: 20%;
+    padding-left: 10%;
+}
+.primaryColor{
+  color:#E91E63;
+}
+.formHeader label{
+    color: #E91E63;
+    font-size: 46px;
+    font-family: 'Ubuntu', sans-serif;
+    margin-right: 245px;
+}
+.formHeader,
+.formLoginHeader{
+  padding-bottom: 10px;
+}
+.formLoginHeader label{
+    color: #E91E63;
+    font-size: 46px;
+    font-family: 'Ubuntu', sans-serif;
+    margin-right: 282px;
+}
+.loginTxt{
+  border-bottom-color: #E91E63;
+  background-color: rgba(158, 158, 158, 0);
+  margin:15px 0;
+}
