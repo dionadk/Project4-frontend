@@ -8,11 +8,6 @@ export default class Journel extends Component {
         // let selectedUser = this.props.match.params._id
 
     this.state = {
-        // user: {
-        //   _id: null,
-        //   email: null,
-        //   userName: null
-        // },
         moment: '',
         place: '',
         image: '',

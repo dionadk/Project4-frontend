@@ -54,8 +54,6 @@ export default class Signup extends Component {
   render () {
     // console.log(this.state.user)
     return (
-
-
         <div className="flexrow loginrow">
             <div className="loginCol">
               <label className="logo">Jurno</label>
@@ -95,31 +93,6 @@ export default class Signup extends Component {
               </div></div>
             </div>
         </div>
-
-  // <div className="loginBanner">
-  //     <div className="flexrow headerBanner">
-  //       <Link to="/">Signup</Link>
-  //       <Link to="/login">Login</Link>
-  //     </div>
-  //
-  //     <div className="headerContainer">
-  //     <div id="parent">
-  //       <div className="selectorBrd"></div>
-  //         <form id="form_login" onSubmit={this.handleSubmitSignup}>
-  //             <div>
-  //               <input name="userName" type="text" placeholder="user name" onChange={this.handleCreateSignup}/>
-  //             </div>
-  //             <div>
-  //               <input name="email" type="text" placeholder="email" onChange={this.handleCreateSignup}/>
-  //             </div>
-  //             <div>
-  //               <input name="password" type="password" placeholder="password" onChange={this.handleCreateSignup}/>
-  //             </div>
-  //               <button type="submit" value="signup">Signup</button>
-  //         </form>
-  //     </div>
-  //     </div>
-  // </div>
     )
   }
 

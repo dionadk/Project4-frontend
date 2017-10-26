@@ -234,6 +234,7 @@ renderItemOrEditJournel( journel ) {
                 </div>
                 <div className="flexright navigation">
                     <a id="contactLnk" className="menuItem" href="/">LOGOUT</a>
+
                     <Link id="contactLnk" className="menuItem" to={`/home/${this.state.user._id}/createJournels`}>CREATE JOURNEL</Link>
                 </div>
             </div>
@@ -274,6 +275,7 @@ renderItemOrEditJournel( journel ) {
               </div>
           </div>
           <div>
+            {/* create group form */}
             <Group
               user={this.state.user}
             />
