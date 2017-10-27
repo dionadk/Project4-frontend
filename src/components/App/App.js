@@ -19,7 +19,12 @@ class App extends Component {
     this.state = {
       users: [],
       groups: [],
-      todos: []
+      todos: [],
+      user: {
+        _id: null,
+        email: null,
+        userName: null
+      }
     }
   }
 

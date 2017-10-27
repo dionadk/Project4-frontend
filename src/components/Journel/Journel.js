@@ -45,7 +45,7 @@ export default class Journel extends Component {
       user: this.state.user,
     }).then((response)=>{
       console.log(response)
-      window.location.href= "/Project4-frontend/home/" + response.data.user;
+      window.location.href= "/Project4-frontend/home/" + this.state.user;
     }).catch((err) => {
       console.log(err)
     })
@@ -57,7 +57,7 @@ let selectedUser = this.props.match.params._id
         <div className="createJournel" >
           <h1 className="profileHdr"><span>Create Journel</span></h1>
             <div className="flexrow">
-              <form className="editJournel">
+              <form className="editJournel" onSubmit={this.handleSubmitJournel}>
                 <div className="flexrow">
                   <label>Moment</label>
                   <input name="moment" type="text" placeholder="moment" onChange={this.handleCreateJournel} />

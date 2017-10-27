@@ -178,7 +178,7 @@ handleEditJournelItem() {
     date: this.state.date,
     user: this.state.selectedUser
   }).then((response)=>{
-    window.location.href= "/home/" + response.data.user;
+    window.location.href= "/home/" + this.state.user._id;
   })
 }
 

@@ -31,8 +31,10 @@ export default class Todo extends Component {
       isCompleted: this.state.isCompleted,
       user: this.state.user,
     }).then((response)=>{
+
       console.log(response)
-      window.location.href= "/Project4-frontend/home/" + response.data._id;
+      // window.location.href= "/home/" + response.data._id
+      window.location.href= "/Project4-frontend/home/" + this.state.user
     }).catch((err) => {
       console.log(err)
     })
