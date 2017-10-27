@@ -223,17 +223,17 @@ renderItemOrEditJournel( journel ) {
                    <input onChange={ this.handleEditJournelField } type="date" name="date" defaultValue={ journel.date } />
                  </div>
                  <div className="flexrow">
-           <div className="updateBtn">
-             <button className="Btn" onClick={ this.handleEditJournelItem } label="Update Journel"> Update</button>
-           </div>
-           <div className="deleteBtn">
-             <button className="Btn" onClick={ this.handleDeleteJournel } label="Delete Journel">Delete </button>
-           </div>
-           <div>
-             <button className="Btn" onClick={ this.handleCancelEdit } label="Cancel Edit">Cancel </button>
-           </div>
+                   <div className="updateBtn">
+                     <button className="Btn" onClick={ this.handleEditJournelItem } label="Update Journel"> Update</button>
+                   </div>
+                   <div className="deleteBtn">
+                     <button className="Btn" onClick={ this.handleDeleteJournel } label="Delete Journel">Delete </button>
+                   </div>
+                   <div>
+                     <button className="Btn" onClick={ this.handleCancelEdit } label="Cancel Edit">Cancel </button>
+                   </div>
                  </div>
-        </form>
+          </form>
        </div>
 
      </div>
@@ -254,7 +254,6 @@ renderItemOrEditJournel( journel ) {
             <div><label className="journelPlace rightAlnTxt">{`${ journel.date }`}</label></div>
           </div>
           <label className="journelPlace">{`${ journel.moment }`}</label>
-
         </div>
       </div>
     </li>;
@@ -285,6 +284,12 @@ renderItemOrEditJournel( journel ) {
               </div>
           </div>
           <div className="flexright">
+
+              {/* create group form */}
+              <Group
+                user={this.state.user}
+              />
+
           </div>
         </div>
 
@@ -320,12 +325,6 @@ renderItemOrEditJournel( journel ) {
                 </ul>
                 </section>
               </div>
-          </div>
-          <div>
-            {/* create group form */}
-            <Group
-              user={this.state.user}
-            />
           </div>
     </div>
     )

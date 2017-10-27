@@ -228,3 +228,21 @@ width: 60px;
 .createJournel {
   margin: 40px;
 }
+
+.editGroup{
+
+  display: grid;
+  position: relative;
+  background-color: transparent;
+
+  margin-right: 300px;
+  width: 10px;
+  padding: 20px;
+
+}
+.groupTxt{
+  border-bottom-color: #E91E63;
+  background-color: rgba(158, 158, 158, 0);
+  margin:15px 0;
+  width: 100px;
+}

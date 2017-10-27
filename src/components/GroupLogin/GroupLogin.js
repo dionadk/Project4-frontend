@@ -60,7 +60,7 @@ export default class GroupLogin extends Component {
                              <input className="loginTxt" name="email" type="text" placeholder="email" onChange={this.handleCreateLogin}/>
                            </div>
                            <div>
-                             <input name="groupEmail" type="text" placeholder="group email" onChange={this.handleCreateLogin}/>
+                             <input className="loginTxt" name="groupEmail" type="text" placeholder="group email" onChange={this.handleCreateLogin}/>
                            </div>
                            <div>
                              <input className="loginTxt" name="password" type="password" placeholder="password" onChange={this.handleCreateLogin}/>

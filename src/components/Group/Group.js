@@ -63,7 +63,8 @@ export default class Group extends Component {
       member: this.state.addMember,
       creator: this.props.user._id
     }).then((response)=>{
-      window.location.href= "/home/" + response.data.creator;
+      console.log(response)
+      // window.location.href= "/home/" + response.data.creator;
     }).catch((err) => {
       console.log(err)
     })
@@ -74,14 +75,18 @@ export default class Group extends Component {
     return (
       <div>
         <div>
-          <form className="flexrow" onSubmit={this.handleSubmitGroup}>
-            <input name="groupName" type="text" placeholder="group name" onChange={this.handleCreateGroup} />
+          <form className="editGroup" onSubmit={this.handleSubmitGroup}>
+            <div className="flexrow">
+            <input className="groupTxt" name="groupName" type="text" placeholder="group Id" onChange={this.handleCreateGroup} />
             {/* <input name="memberEmail" type="text" placeholder="member email" onChange={this.handleCreateGroup} /> */}
-            <button type='submit'>Create Group</button>
+            <button className="Btn" type='submit'>Create Group</button>
+          </div>
           </form>
-            <form onSubmit={this.handleSubmitMember}>
-            <input name="addMember" type="text" onChange={this.handleAddMember}/>
-            <button type='submit'>Add Member</button>
+            <form className="editGroup" onSubmit={this.handleSubmitMember}>
+            <div className="flexrow">
+            <input className="groupTxt" name="addMember" type="text" onChange={this.handleAddMember}/>
+            <button className="Btn" type='submit'>Add Member</button>
+          </div>
           </form>
         </div>
       </div>

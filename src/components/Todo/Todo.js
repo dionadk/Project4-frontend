@@ -32,7 +32,7 @@ export default class Todo extends Component {
       user: this.state.user,
     }).then((response)=>{
       console.log(response)
-      // window.location.href= "/home/" + response.data._id;
+      window.location.href= "/home/" + response.data._id;
     }).catch((err) => {
       console.log(err)
     })
