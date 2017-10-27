@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './Login.css';
+import '../Login/Login.css';
 import axios from 'axios'
 import {
   Link,
@@ -8,12 +8,13 @@ import {
 } from "react-router-dom"
 
 
-export default class Login extends Component {
+export default class GroupLogin extends Component {
   constructor(props) {
     super(props)
     this.state = {
         email: '',
-        password: ''
+        password: '',
+        groupEmail: ''
       }
 
   this.handleSubmitLogin = this.handleSubmitLogin.bind(this)
@@ -31,14 +32,16 @@ export default class Login extends Component {
   handleSubmitLogin (e) {
     e.preventDefault()
     console.log(`state: ${this.state}`);
-    axios.post("http://localhost:4000/api/login",{
+    axios.post("http://localhost:4000/api/grouplogin",{
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
+      groupEmail: this.state.groupEmail
     }).then((response)=>{
+      console.log(response)
       if(response.data == null)
-      alert("Invalid user credentials");
+      alert("Invalid user credentials or group doesnt exists");
       else
-      window.location.href= "/home/" + response.data._id;
+      window.location.href= "/home/" + response.data;
     }).catch((err) => {
       console.log(err)
     })
@@ -56,9 +59,9 @@ export default class Login extends Component {
                            <div>
                              <input className="loginTxt" name="email" type="text" placeholder="email" onChange={this.handleCreateLogin}/>
                            </div>
-                           {/* <div>
-                             <input name="groupEmail" type="text" placeholder="group ema" onChange={this.handleCreateLogin}/>
-                           </div> */}
+                           <div>
+                             <input className="loginTxt" name="groupEmail" type="text" placeholder="group email" onChange={this.handleCreateLogin}/>
+                           </div>
                            <div>
                              <input className="loginTxt" name="password" type="password" placeholder="password" onChange={this.handleCreateLogin}/>
                            </div>
@@ -75,7 +78,6 @@ export default class Login extends Component {
                       <div className="flexright navigation">
                           <a id="contactLnk" className="menuItem" href="/">SIGNUP</a>
                           <a id="contactLnk" className="menuItem" href="/">ABOUT US</a>
-                          <a id="contactLnk" className="menuItem" href="/groupLogin">GROUP LOGIN</a>
                       </div>
                   </div>
               </div>

@@ -1,4 +1,5 @@
 <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 
 .flexmargin {
     margin-bottom: 20px;
@@ -30,10 +31,34 @@
     -ms-flex-direction: column;
     -webkit-flex-direction: column;
     flex-direction: column;
-    height: 100%;
+    height: 100vh;
     width: 100%;
 }
 
+.loginrow {
+  height: 100vh;
+}
+.loginCol{
+    height: 100%;
+    min-width: 500px;
+    width: 40%;
+    background-color: rgba(158, 158, 158, 0);
+    box-shadow: 2px 2px 15px rgba(128, 128, 128, 0.56);
+}
+.loginbg{
+    background: url("https://awol.junkee.com/wp-content/uploads/2015/11/bag-768x576.jpg");
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.loginDetail{
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(21, 20, 20, 0.7);
+  /*background: linear-gradient(141deg, rgba(255, 193, 7, 0.6) 0%, rgba(255, 152, 0, 0.3) 51%, rgba(205, 220, 57, 0.3) 75%);*/
+  /*background: linear-gradient(141deg, rgba(15, 184, 173, 0.6) 0%, rgba(31, 200, 219, 0.6) 51%, rgba(44, 181, 232, 0.6) 75%);*/
+}
 .flexleft {
     display: flex;
     -ms-flex: 0 0 auto;
@@ -72,15 +97,15 @@
     flex-grow: 4;
 }
 
-nav {
+.mainNav {
     height: 70px;
-    background-color: rgba(21, 20, 20, 0.7);
+    /*background-color: rgba(21, 20, 20, 0.7);*/
     top: 0;
     right: 0;
     left: 0;
 }
-.navigation{
-  margin-right: 30px;
+.navigation{    margin-right: 30px;
+    height: 90px;
 }
 
 .menuItem {
@@ -106,43 +131,17 @@ li{
 }
 .editJournel{
   display: grid;
-    position: relative;
-    background-color: #fff;
-    box-shadow: 2px 2px 5px grey;
-    border-radius: 5px;
-    width: 500px;
-    padding: 20px;
 }
-.editJournel label{
-  width: 100px;
-  font-size: 14px;
-  margin-top: 10px;
-}
-
 .menuItem:hover {
     border-bottom: 3px solid #d61515;
 }
 .todolist{
   width: 400px;
-  background-color: transparent;
+  background-color: #fff;
   margin: 35px 30px;
   min-height: 500px;
-  /*box-shadow: 2px 2px 5px gray;*/
+  box-shadow: 2px 2px 5px gray;
 }
-.todoEdit{
-    position: relative;
-    background-color: rgb(230, 230, 230);
-    box-shadow: 2px 2px 5px rgba(128, 128, 128, 0.47);
-    padding-bottom: 20px;
-  }
-  .todoEdit button{
-    width: auto;
-  }
-  .todoEdit input{
-    background-color: transparent;
-    border-bottom: 1px solid #E91E63;
-    width: 355px;
-  }
 .todoLbl{
   margin: 10px;
   font-size: 30px;
@@ -156,60 +155,16 @@ li{
   font-family: 'Kaushan Script', cursive;
   font-size: 40px;
   margin:0 10px;
-  color:#fff;
+  color:#e91f63;
 }
-
-.profilePic{
-    background: linear-gradient(141deg, rgba(15, 184, 173, 1) 0%, rgba(31, 200, 219, 1) 51%, rgba(44, 181, 232, 1) 75%);
-    border-radius: 100px;
-    height: 60px;
-    width: 60px;
-    margin: 20px;
+.copyrightLbl{
+    position: fixed;
+    bottom: 0;
+    left: 15px;
+    font-size: 14px;
+    color: rgba(158, 158, 158, 0.6);
 }
-.profilePic img{
-height: 60px;
-width: 60px;
-}
-.journelHdr,
-.profileHdr{
-  margin-top: 20px;
-  height: 90px;
-  display: flex;
-  flex-direction: column;
-}
-.profileHdr span{
-    font-size: 30px;
-    margin-top: 5px;
-  font-family: 'Ubuntu', sans-serif;
-}
-.journelHdr label{
-  margin: 10px;
-}
-.journelImg{
-  width: 300px;
-  height: 200px;
-  margin: 20px 0;
-}
-.journelData{
-    background-color: rgba(255, 255, 255, 0.9);
-    height: 65px;
-    color: #E91E63;
-    margin-top: 20px 0;
-    width: 500px;
-    height: 200px;
-}
-.journelPlace{
-    font-size: 16px;
-    color: gray;
-}
-.rightAlnTxt{
-    text-align: right;
-    margin: 0 10px;
-  }
-.list-journel-item{
-  display: inline;
-}
-.Btn{
+.loginBtn{
     font-size: 16px;
     background-color: #E91E63;
     border: 0;
@@ -217,32 +172,43 @@ width: 60px;
     cursor: pointer;
     width: 130px;
     margin-top: 20px;
-    margin-left: 20px;
+    margin-left: 265px;
     color: #fff;
     outline: none;
     box-shadow: 2px 2px 5px gray;
 }
-.Btn:hover{
+.loginBtn:hover{
   background-color: #F91E63;
 }
-.createJournel {
-  margin: 40px;
+.lblCaption{
+    color: #fff;
+    font-size: 40px;
+    height: 100%;
+    font-family: 'Ubuntu', sans-serif;
+    padding-top: 20%;
+    padding-left: 10%;
 }
-
-.editGroup{
-
-  display: grid;
-  position: relative;
-  background-color: transparent;
-
-  margin-right: 300px;
-  width: 10px;
-  padding: 20px;
-
+.primaryColor{
+  color:#E91E63;
 }
-.groupTxt{
+.formHeader label{
+    color: #E91E63;
+    font-size: 46px;
+    font-family: 'Ubuntu', sans-serif;
+    margin-right: 245px;
+}
+.formHeader,
+.formLoginHeader{
+  padding-bottom: 10px;
+}
+.formLoginHeader label{
+    color: #E91E63;
+    font-size: 46px;
+    font-family: 'Ubuntu', sans-serif;
+    margin-right: 282px;
+}
+.loginTxt{
   border-bottom-color: #E91E63;
   background-color: rgba(158, 158, 158, 0);
   margin:15px 0;
-  width: 100px;
 }

@@ -4,6 +4,7 @@ import Signup from '../Signup/Signup.js';
 import Landing from '../Landing/Landing.js';
 import Journel from '../Journel/Journel.js';
 import Login from '../Login/Login.js';
+import GroupLogin from '../GroupLogin/GroupLogin.js';
 // import axios from 'axios';
 import {
   BrowserRouter as Router,
@@ -45,7 +46,13 @@ class App extends Component {
                 users={this.state.user} />
             )}/>
 
-            <Route exact path='/Project4-frontend/home/:_id' render={(props) => (
+            <Route exact path='/groupLogin' render={(props) => (
+              <GroupLogin
+                {...props}
+                users={this.state.user} />
+            )}/>
+
+            <Route exact path='/home/:_id' render={(props) => (
               <Landing
                 {...props}
                 users={this.state.users}
@@ -58,9 +65,6 @@ class App extends Component {
                 users={this.state.users}
               />
             )}/>
-            {/* <Route path='/login' render={() => (
-              <Login />
-            )}/> */}
 
           </Switch>
       </Router>

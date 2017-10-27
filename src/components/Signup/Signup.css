@@ -1,5 +1,6 @@
 #parent {
    width: 100%;
+    padding-top: 50%;
 }
 #form_login {
     padding-left: 50px;

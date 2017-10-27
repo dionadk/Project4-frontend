@@ -31,8 +31,10 @@ export default class Landing extends Component {
           moment: '',
           place: '',
           image: '',
-          date: ''
+          date: '',
+          memberEmail: null
         }
+
         // handle edit todo functions
         this.handleEditField = this.handleEditField.bind(this)
         this.handleEditItem = this.handleEditItem.bind(this)
@@ -96,14 +98,16 @@ export default class Landing extends Component {
     })
   }
 
+
   handleDeleteItem() {
     let todoId = this.state.editing;
     axios.post(`http://localhost:4000/api/todos/${this.state.editing}/deletetodo`)
   }
 
-  toggleEditing(todoId) {
+  toggleEditing(todo) {
     this.setState ({
-      editing: todoId
+      editing: todo._id,
+      item: todo.item
     })
   }
   handleCancelEdit (todoId) {
@@ -118,7 +122,7 @@ export default class Landing extends Component {
     if ( this.state.editing === todo._id ) {
       // Handle rendering edit fields here.
       return <li key={ `${ todo._id }` } className="list-group-item">
-       <div className="flexRow">
+       <div className="flexRow todoEdit">
          <div className="flexCol">
            <input
              onChange={ this.handleEditField }
@@ -129,18 +133,18 @@ export default class Landing extends Component {
            />
          </div>
          <div className="flexCol">
-           <button onClick={ this.handleEditItem } label="Update Item"> Update</button>
-           <button onClick={ this.handleDeleteItem } label="Delete Item">Delete </button>
-           <button onClick={ this.handleCancelEdit } label="Cancel Edit">Cancel </button>
+           <button className="Btn" onClick={ this.handleEditItem } label="Update Item"> Update</button>
+           <button className="Btn" onClick={ this.handleDeleteItem } label="Delete Item">Delete </button>
+           <button className="Btn" onClick={ this.handleCancelEdit } label="Cancel Edit">Cancel </button>
          </div>
        </div>
      </li>
     } else {
       return <li
-        onClick={ this.toggleEditing.bind( null, todo._id ) }
+        onClick={ this.toggleEditing.bind( null, todo) }
         key={ todo._id }
         className="list-group-item">
-        { `${ todo.item }`}
+        {`${ todo.item }`}
       </li>;
     }
   }
@@ -163,13 +167,18 @@ handleEditJournelField( event ) {
 
 handleEditJournelItem() {
   console.log("this is not happeing")
+  let selectedUser = this.props.match.params._id
   let journelId = this.state.editingJournel;
+  console.log(selectedUser)
 
   axios.post(`http://localhost:4000/api/journels/${this.state.editingJournel}/updatejournel`,{
     moment: this.state.moment,
     place: this.state.place,
     image: this.state.image,
-    date: this.state.date
+    date: this.state.date,
+    user: this.state.selectedUser
+  }).then((response)=>{
+    window.location.href= "/home/" + response.data.user;
   })
 }
 
@@ -179,9 +188,13 @@ handleDeleteJournel() {
   axios.post(`http://localhost:4000/api/journels/${this.state.editingJournel}/deletejournel`)
 }
 
-toggleJournelEditing(journelId) {
+toggleJournelEditing(journel) {
   this.setState ({
-    editingJournel: journelId
+    editingJournel: journel._id,
+    moment: journel.moment,
+    place: journel.place,
+    image: journel.image,
+    date: journel.date
   })
 }
 // rendering edit field based on user click on item
@@ -189,34 +202,60 @@ renderItemOrEditJournel( journel ) {
   console.log(journel);
   if ( this.state.editingJournel === journel._id ) {
     // Handle rendering edit fields here.
-    return <li key={ `${ journel._id }` } className="list-group-item">
+    return <li key={ `${ journel._id }` } className="list-journel-item">
      <div className="flexRow">
        <div className="flexCol">
          <form className="editJournel">
-           <input onChange={ this.handleEditJournelField } type="text" name="moment" defaultValue={ journel.moment } />
-           <input onChange={ this.handleEditJournelField } type="text" name="place" defaultValue={ journel.place } />
-           <input onChange={ this.handleEditJournelField } type="text" name="image" defaultValue={ journel.image } />
-           <input onChange={ this.handleEditJournelField } type="text" name="date" defaultValue={ journel.date } />
-           <div className="updateBtn">
-             <button onClick={ this.handleEditJournelItem } label="Update Journel"> Update</button>
+           <div className="flexrow">
+             <label>Moment</label>
+             <input onChange={ this.handleEditJournelField } type="text" name="moment" defaultValue={ journel.moment } />
            </div>
-           <div className="deleteBtn">
-             <button onClick={ this.handleDeleteJournel } label="Delete Journel">Delete </button>
-           </div>
-           <div>
-             <button onClick={ this.handleCancelEdit } label="Cancel Edit">Cancel </button>
-           </div>
-        </form>
+             <div className="flexrow">
+               <label>Location</label>
+               <input onChange={ this.handleEditJournelField } type="text" name="place" defaultValue={ journel.place } />
+             </div>
+               <div className="flexrow">
+                 <label>Image</label>
+                 <input onChange={ this.handleEditJournelField } type="text" name="image" defaultValue={ journel.image } />
+               </div>
+                 <div className="flexrow">
+                   <label>Date</label>
+                   <input onChange={ this.handleEditJournelField } type="date" name="date" defaultValue={ journel.date } />
+                 </div>
+                 <div className="flexrow">
+                   <div className="updateBtn">
+                     <button className="Btn" onClick={ this.handleEditJournelItem } label="Update Journel"> Update</button>
+                   </div>
+                   <div className="deleteBtn">
+                     <button className="Btn" onClick={ this.handleDeleteJournel } label="Delete Journel">Delete </button>
+                   </div>
+                   <div>
+                     <button className="Btn" onClick={ this.handleCancelEdit } label="Cancel Edit">Cancel </button>
+                   </div>
+                 </div>
+          </form>
        </div>
 
      </div>
    </li>
   } else {
     return <li
-      onClick={ this.toggleJournelEditing.bind( null, journel._id ) }
+      onClick={ this.toggleJournelEditing.bind( null, journel ) }
       key={ journel._id }
-      className="list-group-item">
-      { `${ journel.moment }`} at {`${ journel.place }`}
+      className="list-journel-item">
+      <div className="flexrow">
+        <img className="journelImg"  src={`${ journel.image }`}/>
+
+        <div className="flexstretch journelData journelHdr">
+          <div className="flexrow">
+            <div className="flexstretch">
+              <label>{`${ journel.place }`}</label>
+            </div>
+            <div><label className="journelPlace rightAlnTxt">{`${ journel.date }`}</label></div>
+          </div>
+          <label className="journelPlace">{`${ journel.moment }`}</label>
+        </div>
+      </div>
     </li>;
   }
 }
@@ -230,12 +269,29 @@ renderItemOrEditJournel( journel ) {
                     <label className="logo">Jurno</label>
                 </div>
                 <div className="flexright navigation">
-                    <a id="contactLnk" className="menuItem" href="/Project4-frontend">LOGOUT</a>
-                    <Link id="contactLnk" className="menuItem" to={`/Project4-frontend/home/${this.state.user._id}/createJournels`}>CREATE JOURNEL</Link>
+                    <Link id="contactLnk" className="menuItem" to={`/home/${this.state.user._id}/createJournels`}>CREATE JOURNEL</Link>
+                    <a id="contactLnk" className="menuItem" href="/">LOGOUT</a>
                 </div>
             </div>
         </nav>
-        <h1>Welcome {this.state.user.userName}</h1>
+        <div className="flexrow">
+          <div className="flexstretch">
+            <div className="profilePic"><img src="https://i.imgur.com/Hx5sNm9.png"/></div>
+
+              <div className="profileHdr">
+                <label>Welcome</label>
+                <span>{this.state.user.userName}</span>
+              </div>
+          </div>
+          <div className="flexright">
+
+              {/* create group form */}
+              <Group
+                user={this.state.user}
+              />
+
+          </div>
+        </div>
 
           <div className="flexrow">
             <div className="flexcol">
@@ -269,11 +325,6 @@ renderItemOrEditJournel( journel ) {
                 </ul>
                 </section>
               </div>
-          </div>
-          <div>
-            <Group
-              user={this.state.user}
-            />
           </div>
     </div>
     )
