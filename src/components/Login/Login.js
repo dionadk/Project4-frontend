@@ -38,7 +38,7 @@ export default class Login extends Component {
       if(response.data == null)
       alert("Invalid user credentials");
       else
-      window.location.href= "/Project4-frontends/home/" + response.data._id;
+      window.location.href= "/Project4-frontend/home/" + response.data._id;
     }).catch((err) => {
       console.log(err)
     })
