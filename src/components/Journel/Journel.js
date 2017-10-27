@@ -37,7 +37,7 @@ export default class Journel extends Component {
 
   handleSubmitJournel (e) {
     e.preventDefault()
-    axios.post("http://localhost:4000/api/journels",{
+    axios.post("https://mytrip.herokuapp.com/api/journels",{
       moment: this.state.moment,
       place: this.state.place,
       image: this.state.image,
@@ -45,7 +45,7 @@ export default class Journel extends Component {
       user: this.state.user,
     }).then((response)=>{
       console.log(response)
-      window.location.href= "/home/" + response.data.user;
+      window.location.href= "/Project4-frontend/home/" + response.data.user;
     }).catch((err) => {
       console.log(err)
     })

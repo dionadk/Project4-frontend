@@ -35,7 +35,7 @@ export default class Signup extends Component {
     e.preventDefault()
     console.log(`state: ${this.state.userName}`);
     console.log("hello");
-    axios.post("http://localhost:4000/api/users",{
+    axios.post("https://mytrip.herokuapp.com/api/users",{
       userName: this.state.userName,
       email: this.state.email,
       password: this.state.password,
@@ -80,8 +80,8 @@ export default class Signup extends Component {
                     <div className="flexrow">
                         <div className="flexstretch"></div>
                         <div className="flexright navigation">
-                            <Link to='/login' id="contactLnk" className="menuItem" href="/login">LOGIN</Link>
-                            <Link to='/' id="contactLnk" className="menuItem" href="/">ABOUT US</Link>
+                            <Link to='/Project4-frontend/login' id="contactLnk" className="menuItem" href="/login">LOGIN</Link>
+                            <Link to='/Project4-frontend' id="contactLnk" className="menuItem" href="/">ABOUT US</Link>
                         </div>
                     </div>
                 </div>

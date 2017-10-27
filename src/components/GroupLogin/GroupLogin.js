@@ -32,7 +32,7 @@ export default class GroupLogin extends Component {
   handleSubmitLogin (e) {
     e.preventDefault()
     console.log(`state: ${this.state}`);
-    axios.post("http://localhost:4000/api/grouplogin",{
+    axios.post("https://mytrip.herokuapp.com/api/grouplogin",{
       email: this.state.email,
       password: this.state.password,
       groupEmail: this.state.groupEmail
@@ -41,7 +41,7 @@ export default class GroupLogin extends Component {
       if(response.data == null)
       alert("Invalid user credentials or group doesnt exists");
       else
-      window.location.href= "/home/" + response.data;
+      window.location.href= "/Project4-frontend/home/" + response.data;
     }).catch((err) => {
       console.log(err)
     })
@@ -53,7 +53,7 @@ export default class GroupLogin extends Component {
       <div className="flexrow loginrow">
           <div className="loginCol">
             <label className="logo">Jurno</label>
-            <div id="parent">
+                  <div id="parent">
                        <form id="form_login" onSubmit={this.handleSubmitLogin}>
                          <div className="formLoginHeader"><label>Login</label></div>
                            <div>
@@ -67,8 +67,8 @@ export default class GroupLogin extends Component {
                            </div>
                              <button className="loginBtn" type="submit" value="signup">Login</button>
                        </form>
-                   </div>
-                  <label className="copyrightLbl">&copy; Copyright 2017 dk Designs</label>
+                  </div>
+            <label className="copyrightLbl">&copy; Copyright 2017 dk Designs</label>
           </div>
           <div className="loginbg">
             <div className="loginDetail">
@@ -76,8 +76,8 @@ export default class GroupLogin extends Component {
                   <div className="flexrow">
                       <div className="flexstretch"></div>
                       <div className="flexright navigation">
-                          <a id="contactLnk" className="menuItem" href="/">SIGNUP</a>
-                          <a id="contactLnk" className="menuItem" href="/">ABOUT US</a>
+                          <a id="contactLnk" className="menuItem" href="/Project4-frontend">SIGNUP</a>
+                          <a id="contactLnk" className="menuItem" href="/Project4-frontend">ABOUT US</a>
                       </div>
                   </div>
               </div>

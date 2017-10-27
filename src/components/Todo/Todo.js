@@ -26,13 +26,13 @@ export default class Todo extends Component {
 
   handleSubmitTodo (e) {
     e.preventDefault()
-    axios.post("http://localhost:4000/api/todos",{
+    axios.post("https://mytrip.herokuapp.com/api/todos",{
       item: this.state.item,
       isCompleted: this.state.isCompleted,
       user: this.state.user,
     }).then((response)=>{
       console.log(response)
-      window.location.href= "/home/" + response.data._id;
+      window.location.href= "/Project4-frontend/home/" + response.data._id;
     }).catch((err) => {
       console.log(err)
     })

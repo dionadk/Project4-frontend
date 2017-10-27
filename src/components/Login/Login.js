@@ -31,14 +31,14 @@ export default class Login extends Component {
   handleSubmitLogin (e) {
     e.preventDefault()
     console.log(`state: ${this.state}`);
-    axios.post("http://localhost:4000/api/login",{
+    axios.post("hhttps://mytrip.herokuapp.com/api/login",{
       email: this.state.email,
       password: this.state.password
     }).then((response)=>{
       if(response.data == null)
       alert("Invalid user credentials");
       else
-      window.location.href= "/home/" + response.data._id;
+      window.location.href= "/Project4-frontends/home/" + response.data._id;
     }).catch((err) => {
       console.log(err)
     })
@@ -73,9 +73,9 @@ export default class Login extends Component {
                   <div className="flexrow">
                       <div className="flexstretch"></div>
                       <div className="flexright navigation">
-                          <a id="contactLnk" className="menuItem" href="/">SIGNUP</a>
-                          <a id="contactLnk" className="menuItem" href="/">ABOUT US</a>
-                          <a id="contactLnk" className="menuItem" href="/groupLogin">GROUP LOGIN</a>
+                          <a id="contactLnk" className="menuItem" href="/Project4-frontend">SIGNUP</a>
+                          <a id="contactLnk" className="menuItem" href="/Project4-frontend">ABOUT US</a>
+                          <a id="contactLnk" className="menuItem" href="/Project4-frontend/groupLogin">GROUP LOGIN</a>
                       </div>
                   </div>
               </div>

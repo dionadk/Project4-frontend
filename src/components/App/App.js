@@ -46,13 +46,13 @@ class App extends Component {
                 users={this.state.user} />
             )}/>
 
-            <Route exact path='/groupLogin' render={(props) => (
+            <Route exact path='/Project4-frontend/groupLogin' render={(props) => (
               <GroupLogin
                 {...props}
                 users={this.state.user} />
             )}/>
 
-            <Route exact path='/home/:_id' render={(props) => (
+            <Route exact path='/Project4-frontend/home/:_id' render={(props) => (
               <Landing
                 {...props}
                 users={this.state.users}

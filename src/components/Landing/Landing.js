@@ -52,7 +52,7 @@ export default class Landing extends Component {
 
   componentDidMount () {
     let selectedUser = this.props.match.params._id
-    axios.get(`http://localhost:4000/api/users/${selectedUser}`)
+    axios.get(`https://mytrip.herokuapp.com/api/users/${selectedUser}`)
          .then(response => {
            console.log(response) // ***Maybe something unexpected here with state
            this.setState({
@@ -62,7 +62,7 @@ export default class Landing extends Component {
          .then(response => console.log(this.state.user))
          .catch((err) => console.log(err))
 
-    axios.get(`http://localhost:4000/api/users/${selectedUser}/todos`)
+    axios.get(`https://mytrip.herokuapp.com/api/users/${selectedUser}/todos`)
     // .then(response => console.log(response.data.userName))
         .then(response => this.setState({
           todos: response.data
@@ -70,7 +70,7 @@ export default class Landing extends Component {
         .then(response => console.log(this.state.user))
         .catch((err) => console.log(err))
 
-    axios.get(`http://localhost:4000/api/users/${selectedUser}/journels`)
+    axios.get(`https://mytrip.herokuapp.com/api/users/${selectedUser}/journels`)
 
         .then(response => this.setState({
           journels: response.data
@@ -93,7 +93,7 @@ export default class Landing extends Component {
   handleEditItem() {
     console.log("this is not happeing")
     let todoId = this.state.editing;
-    axios.post(`http://localhost:4000/api/todos/${this.state.editing}/updatetodo`,{
+    axios.post(`https://mytrip.herokuapp.com/api/todos/${this.state.editing}/updatetodo`,{
       item: this.state.item
     })
   }
@@ -101,7 +101,7 @@ export default class Landing extends Component {
 
   handleDeleteItem() {
     let todoId = this.state.editing;
-    axios.post(`http://localhost:4000/api/todos/${this.state.editing}/deletetodo`)
+    axios.post(`https://mytrip.herokuapp.com/api/todos/${this.state.editing}/deletetodo`)
   }
 
   toggleEditing(todo) {
@@ -171,7 +171,7 @@ handleEditJournelItem() {
   let journelId = this.state.editingJournel;
   console.log(selectedUser)
 
-  axios.post(`http://localhost:4000/api/journels/${this.state.editingJournel}/updatejournel`,{
+  axios.post(`hhttps://mytrip.herokuapp.com/api/journels/${this.state.editingJournel}/updatejournel`,{
     moment: this.state.moment,
     place: this.state.place,
     image: this.state.image,
@@ -185,7 +185,7 @@ handleEditJournelItem() {
 handleDeleteJournel() {
   let journelId = this.state.editingJournel;
   console.log(journelId)
-  axios.post(`http://localhost:4000/api/journels/${this.state.editingJournel}/deletejournel`)
+  axios.post(`https://mytrip.herokuapp.com/api/journels/${this.state.editingJournel}/deletejournel`)
 }
 
 toggleJournelEditing(journel) {
@@ -269,8 +269,8 @@ renderItemOrEditJournel( journel ) {
                     <label className="logo">Jurno</label>
                 </div>
                 <div className="flexright navigation">
-                    <Link id="contactLnk" className="menuItem" to={`/home/${this.state.user._id}/createJournels`}>CREATE JOURNEL</Link>
-                    <a id="contactLnk" className="menuItem" href="/">LOGOUT</a>
+                    <Link id="contactLnk" className="menuItem" to={`/Project4-frontend/home/${this.state.user._id}/createJournels`}>CREATE JOURNEL</Link>
+                    <a id="contactLnk" className="menuItem" href="/Project4-frontend">LOGOUT</a>
                 </div>
             </div>
         </nav>

@@ -41,7 +41,7 @@ export default class Group extends Component {
 
   handleSubmitGroup (e) {
     e.preventDefault()
-    axios.post("http://localhost:4000/api/createGroup",{
+    axios.post("https://mytrip.herokuapp.com/api/createGroup",{
       memberEmail: this.state.memberEmail,
       groupName: this.state.groupName,
       creator: this.state.creator,
@@ -51,7 +51,7 @@ export default class Group extends Component {
       if(response.data == null)
         alert("Group exists")
       else
-      window.location.href= "/home/" + response.data.creator;
+      window.location.href= "/Project4-frontend/home/" + response.data.creator;
     }).catch((err) => {
       console.log(err)
     })
@@ -59,7 +59,7 @@ export default class Group extends Component {
   handleSubmitMember (e) {
     console.log(this.state.user)
     e.preventDefault()
-    axios.post("http://localhost:4000/api/addMember",{
+    axios.post("https://mytrip.herokuapp.com/api/addMember",{
       member: this.state.addMember,
       creator: this.props.user._id
     }).then((response)=>{
