@@ -31,7 +31,7 @@ export default class Login extends Component {
   handleSubmitLogin (e) {
     e.preventDefault()
     console.log(`state: ${this.state}`);
-    axios.post("hhttps://mytrip.herokuapp.com/api/login",{
+    axios.post("https://mytrip.herokuapp.com/api/login",{
       email: this.state.email,
       password: this.state.password
     }).then((response)=>{
