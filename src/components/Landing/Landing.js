@@ -54,7 +54,7 @@ export default class Landing extends Component {
     let selectedUser = this.props.match.params._id
     axios.get(`http://localhost:4000/api/users/${selectedUser}`)
          .then(response => {
-           console.log(response) // ***Maybe something unexpected here with state
+           console.log(response)
            this.setState({
              user: response.data
            })
@@ -178,7 +178,7 @@ handleEditJournelItem() {
     date: this.state.date,
     user: this.state.selectedUser
   }).then((response)=>{
-    window.location.href= "/home/" + response.data.user;
+    window.location.href= "/home/" + this.state.user._id;
   })
 }
 

@@ -19,7 +19,12 @@ class App extends Component {
     this.state = {
       users: [],
       groups: [],
-      todos: []
+      todos: [],
+      user: {
+        _id: null,
+        email: null,
+        userName: null
+      }
     }
   }
 
@@ -65,7 +70,7 @@ class App extends Component {
                 users={this.state.users}
               />
             )}/>
-            
+
           </Switch>
       </Router>
     </div>
