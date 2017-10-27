@@ -144,7 +144,7 @@ export default class Landing extends Component {
         onClick={ this.toggleEditing.bind( null, todo) }
         key={ todo._id }
         className="list-group-item">
-        { `${ todo.item }`}
+        {`${ todo.item }`}
       </li>;
     }
   }
