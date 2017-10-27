@@ -54,7 +54,7 @@ export default class Landing extends Component {
     let selectedUser = this.props.match.params._id
     axios.get(`https://mytrip.herokuapp.com/api/users/${selectedUser}`)
          .then(response => {
-           console.log(response) // ***Maybe something unexpected here with state
+           console.log(response)
            this.setState({
              user: response.data
            })
