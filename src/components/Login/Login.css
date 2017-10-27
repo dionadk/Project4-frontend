@@ -138,7 +138,7 @@ li{
 .todolist{
   width: 400px;
   background-color: #fff;
-  margin: 0 30px;
+  margin: 35px 30px;
   min-height: 500px;
   box-shadow: 2px 2px 5px gray;
 }
@@ -155,7 +155,7 @@ li{
   font-family: 'Kaushan Script', cursive;
   font-size: 40px;
   margin:0 10px;
-  color:black;
+  color:#e91f63;
 }
 .copyrightLbl{
     position: fixed;

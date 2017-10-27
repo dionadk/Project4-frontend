@@ -40,7 +40,6 @@ export default class Group extends Component {
   }
 
   handleSubmitGroup (e) {
-    console.log(this.state.user)
     e.preventDefault()
     axios.post("http://localhost:4000/api/createGroup",{
       memberEmail: this.state.memberEmail,
@@ -49,7 +48,10 @@ export default class Group extends Component {
       users: this.state.users
     }).then((response)=>{
       console.log(response)
-      // window.location.href= "/home/" + response.data._id;
+      if(response.data == null)
+        alert("Group exists")
+      else
+      window.location.href= "/home/" + response.data.creator;
     }).catch((err) => {
       console.log(err)
     })
@@ -61,8 +63,7 @@ export default class Group extends Component {
       member: this.state.addMember,
       creator: this.props.user._id
     }).then((response)=>{
-      console.log(response)
-      // window.location.href= "/home/" + response.data._id;
+      window.location.href= "/home/" + response.data.creator;
     }).catch((err) => {
       console.log(err)
     })
@@ -75,8 +76,8 @@ export default class Group extends Component {
         <div>
           <form className="flexrow" onSubmit={this.handleSubmitGroup}>
             <input name="groupName" type="text" placeholder="group name" onChange={this.handleCreateGroup} />
-            <input name="memberEmail" type="text" placeholder="member email" onChange={this.handleCreateGroup} />
-            <button type='submit'>Add Member</button>
+            {/* <input name="memberEmail" type="text" placeholder="member email" onChange={this.handleCreateGroup} /> */}
+            <button type='submit'>Create Group</button>
           </form>
             <form onSubmit={this.handleSubmitMember}>
             <input name="addMember" type="text" onChange={this.handleAddMember}/>

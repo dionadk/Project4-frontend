@@ -106,17 +106,43 @@ li{
 }
 .editJournel{
   display: grid;
+    position: relative;
+    background-color: #fff;
+    box-shadow: 2px 2px 5px grey;
+    border-radius: 5px;
+    width: 500px;
+    padding: 20px;
 }
+.editJournel label{
+  width: 100px;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
 .menuItem:hover {
     border-bottom: 3px solid #d61515;
 }
 .todolist{
   width: 400px;
   background-color: #fff;
-  margin: 0 30px;
+  margin: 35px 30px;
   min-height: 500px;
   box-shadow: 2px 2px 5px gray;
 }
+.todoEdit{
+    position: relative;
+    background-color: rgb(230, 230, 230);
+    box-shadow: 2px 2px 5px rgba(128, 128, 128, 0.47);
+    padding-bottom: 20px;
+  }
+  .todoEdit button{
+    width: auto;
+  }
+  .todoEdit input{
+    background-color: transparent;
+    border-bottom: 1px solid #E91E63;
+    width: 355px;
+  }
 .todoLbl{
   margin: 10px;
   font-size: 30px;
@@ -133,6 +159,72 @@ li{
   color:#fff;
 }
 
-nav{
-
+.profilePic{
+    background: linear-gradient(141deg, rgba(15, 184, 173, 1) 0%, rgba(31, 200, 219, 1) 51%, rgba(44, 181, 232, 1) 75%);
+    border-radius: 100px;
+    height: 60px;
+    width: 60px;
+    margin: 20px;
+}
+.profilePic img{
+height: 60px;
+width: 60px;
+}
+.journelHdr,
+.profileHdr{
+  margin-top: 20px;
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+}
+.profileHdr span{
+    font-size: 30px;
+    margin-top: 5px;
+  font-family: 'Ubuntu', sans-serif;
+}
+.journelHdr label{
+  margin: 10px;
+}
+.journelImg{
+  width: 300px;
+  height: 200px;
+  margin: 20px 0;
+}
+.journelData{
+    background-color: rgba(255, 255, 255, 0.9);
+    height: 65px;
+    color: #E91E63;
+    margin-top: 20px 0;
+    width: 500px;
+    height: 200px;
+}
+.journelPlace{
+    font-size: 16px;
+    color: gray;
+}
+.rightAlnTxt{
+    text-align: right;
+    margin: 0 10px;
+  }
+.list-journel-item{
+  display: inline;
+}
+.Btn{
+    font-size: 16px;
+    background-color: #E91E63;
+    border: 0;
+    padding: 10px;
+    cursor: pointer;
+    width: 130px;
+    margin-top: 20px;
+    margin-left: 20px;
+    color: #fff;
+    outline: none;
+    box-shadow: 2px 2px 5px gray;
+}
+.Btn:hover{
+  background-color: #F91E63;
+}
+.createJournel {
+  margin: 40px;
 }

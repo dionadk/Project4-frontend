@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import {
+  Link,
+  Redirect,
+  Switch
+} from "react-router-dom"
 
 
 export default class Journel extends Component {
@@ -47,18 +52,44 @@ export default class Journel extends Component {
   }
 
   render () {
-
+let selectedUser = this.props.match.params._id
       return(
-        <div>
-          <h5>Create Journel</h5>
-            <div>
-              <form onSubmit={this.handleSubmitJournel}>
+        <div className="createJournel" >
+          <h1 className="profileHdr"><span>Create Journel</span></h1>
+            <div className="flexrow">
+              <form className="editJournel">
+                <div className="flexrow">
+                  <label>Moment</label>
+                  <input name="moment" type="text" placeholder="moment" onChange={this.handleCreateJournel} />
+                </div>
+                  <div className="flexrow">
+                    <label>Location</label>
+                    <input name="place" type="text" placeholder="place" onChange={this.handleCreateJournel} />
+                  </div>
+                    <div className="flexrow">
+                      <label>Image</label>
+                      <input name="image" type="text" placeholder="image" onChange={this.handleCreateJournel} />
+                    </div>
+                      <div className="flexrow">
+                        <label>Date</label>
+                        <input name="date" type="date" onChange={this.handleCreateJournel}/>
+                      </div>
+                      <div className="flexrow">
+                <div className="updateBtn">
+                  <button className="Btn" type='submit'>Create</button>
+                </div>
+                      </div>
+              </form>
+
+
+
+
+              {/* <form className="editJournel" onSubmit={this.handleSubmitJournel}>
                 <input name="moment" type="text" placeholder="moment" onChange={this.handleCreateJournel} />
                 <input name="place" type="text" placeholder="place" onChange={this.handleCreateJournel} />
                 <input name="image" type="text" placeholder="image" onChange={this.handleCreateJournel} />
                 <input name="date" type="date" onChange={this.handleCreateJournel}/>
-                <button type='submit'>Create Journel</button>
-              </form>
+              </form> */}
             </div>
         </div>
       )
