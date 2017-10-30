@@ -171,7 +171,7 @@ handleEditJournelItem() {
   console.log("this is not happeing")
   let selectedUser = this.props.match.params._id
   let journelId = this.state.editingJournel;
-  console.log(selectedUser)
+  console.log(this.state)
 
   axios.post(`https://mytrip.herokuapp.com/api/journels/${this.state.editingJournel}/updatejournel`,{
     moment: this.state.moment,
