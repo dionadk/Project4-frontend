@@ -56,7 +56,7 @@ export default class Signup extends Component {
     return (
         <div className="flexrow loginrow">
             <div className="loginCol">
-              <label className="logo">Jurno</label>
+              <label className="logo">CaptureIt</label>
               <div id="parent">
                 <form id="form_login" onSubmit={this.handleSubmitSignup}>
                   <div className="formHeader"><label>Signup</label></div>
