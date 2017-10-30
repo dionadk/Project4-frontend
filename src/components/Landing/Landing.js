@@ -91,14 +91,15 @@ export default class Landing extends Component {
   }
 
   handleEditItem() {
-    console.log("this is not happeing")
+    let selectedUser = this.props.match.params._id
     let todoId = this.state.editing;
     axios.post(`https://mytrip.herokuapp.com/api/todos/${this.state.editing}/updatetodo`,{
-      item: this.state.item
+      item: this.state.item,
+      user: this.state.selectedUser
 
     }).then((response)=>{
       console.log(response)
-      window.location.href= "/Project4-frontend/home/" + this.state.user;
+      window.location.href= "/Project4-frontend/home/" + this.state.user._id;
     })
   }
 
@@ -106,6 +107,7 @@ export default class Landing extends Component {
   handleDeleteItem() {
     let todoId = this.state.editing;
     axios.post(`https://mytrip.herokuapp.com/api/todos/${this.state.editing}/deletetodo`)
+    window.location.href= "/Project4-frontend/home/" + this.state.user._id;
   }
 
   toggleEditing(todo) {
@@ -158,24 +160,22 @@ export default class Landing extends Component {
 // check if user is updating.
 handleEditJournelField( event ) {
 
-    let name = event.target.name
-    let update = {}
+    let name = event.target.name;
+    let update = {};
     update._id = this.state.editingJournel;
     update[ event.target.name ] = event.target.value;
     // console.log(update[ event.target.name ])
         this.setState ({
           [name]: update[ event.target.name ]
-        },_ => console.log(this.state, update))
+        },_ => console.log(this.state, update));
 
 }
 
 handleEditJournelItem(e) {
   e.preventDefault()
-  console.log("this is not happeing")
-  let selectedUser = this.props.match.params._id
+  let selectedUser = this.props.match.params._id;
   let journelId = this.state.editingJournel;
-  console.log(journelId)
-  console.log(`http://localhost:4000/api/journels/${journelId}/updatejournel`)
+
   axios.post(`http://localhost:4000/api/journels/${journelId}/updatejournel`,{
     moment: this.state.moment,
     place: this.state.place,
@@ -183,15 +183,14 @@ handleEditJournelItem(e) {
     date: this.state.date,
     user: this.state.selectedUser
   }).then((response)=>{
-    console.log(response)
     window.location.href= "/Project4-frontend/home/" + this.state.user._id;
-  }).catch((err) => console.error(err))
+  }).catch((err) => console.error(err));
 }
 
 handleDeleteJournel() {
   let journelId = this.state.editingJournel;
-  console.log(journelId)
-  axios.post(`https://mytrip.herokuapp.com/api/journels/${this.state.editingJournel}/deletejournel`)
+  axios.post(`https://mytrip.herokuapp.com/api/journels/${this.state.editingJournel}/deletejournel`);
+  window.location.href= "/Project4-frontend/home/" + this.state.user._id;
 }
 
 toggleJournelEditing(journel) {
