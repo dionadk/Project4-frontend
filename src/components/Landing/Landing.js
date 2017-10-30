@@ -169,13 +169,14 @@ handleEditJournelField( event ) {
 
 }
 
-handleEditJournelItem() {
+handleEditJournelItem(e) {
+  e.preventDefault()
   console.log("this is not happeing")
   let selectedUser = this.props.match.params._id
   let journelId = this.state.editingJournel;
-  console.log(this.state)
-
-  axios.post(`https://mytrip.herokuapp.com/api/journels/${this.state.editingJournel}/updatejournel`,{
+  console.log(journelId)
+  console.log(`http://localhost:4000/api/journels/${journelId}/updatejournel`)
+  axios.post(`http://localhost:4000/api/journels/${journelId}/updatejournel`,{
     moment: this.state.moment,
     place: this.state.place,
     image: this.state.image,
@@ -184,7 +185,7 @@ handleEditJournelItem() {
   }).then((response)=>{
     console.log(response)
     window.location.href= "/Project4-frontend/home/" + this.state.user._id;
-  })
+  }).catch((err) => console.error(err))
 }
 
 handleDeleteJournel() {
