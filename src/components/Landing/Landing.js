@@ -95,6 +95,8 @@ export default class Landing extends Component {
     let todoId = this.state.editing;
     axios.post(`http://localhost:4000/api/todos/${this.state.editing}/updatetodo`,{
       item: this.state.item
+    }).then((response)=>{
+      window.location.href= "/home/" + this.state.user._id;
     })
   }
 
