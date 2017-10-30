@@ -96,7 +96,7 @@ export default class Landing extends Component {
     axios.post(`https://mytrip.herokuapp.com/api/todos/${this.state.editing}/updatetodo`,{
       item: this.state.item
     }).then((response)=>{
-      window.location.href= "/Project4-frontend/home/" + this.state.user._id;
+      window.location.href= "/home/" + this.state.user._id;
     })
   }
 
@@ -180,7 +180,7 @@ handleEditJournelItem() {
     date: this.state.date,
     user: this.state.selectedUser
   }).then((response)=>{
-    window.location.href= "/Project4-frontend/home/" + this.state.user._id;
+    window.location.href= "/home/" + this.state.user._id;
   })
 }
 
