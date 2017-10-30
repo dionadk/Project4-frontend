@@ -45,7 +45,12 @@ export default class Journel extends Component {
       user: this.state.user,
     }).then((response)=>{
       console.log(response)
+<<<<<<< HEAD
       window.location.href= "/Project4-frontend/home/" + this.state.user;
+=======
+      window.location.href= "/home/" + this.state.user;
+
+>>>>>>> master
     }).catch((err) => {
       console.log(err)
     })
