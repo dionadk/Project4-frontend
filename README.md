@@ -26,7 +26,7 @@
 ### 4. User can logout and login using the email and password
 ### Shared group collaboration
 ### 1.The group member can login using the group login field. User have to enter their email,password and group email(email who created the group)
-## 2.Once logged in, user can add more info regarding the trip.
+### 2.Once logged in, user can add more info regarding the trip.
 
 ### working on making the group collaboration more user friendly and an option to see the groups in which they are added and navigating to the group page
 

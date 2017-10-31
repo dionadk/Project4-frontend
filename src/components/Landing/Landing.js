@@ -271,7 +271,7 @@ renderItemOrEditJournel( journel ) {
         <nav>
             <div className="flexrow">
                 <div className="flexstretch">
-                    <label className="logo">Jurno</label>
+                    <label className="logo">CaptureIt</label>
                 </div>
                 <div className="flexright navigation">
                     <Link id="contactLnk" className="menuItem" to={`/Project4-frontend/home/${this.state.user._id}/createJournels`}>CREATE JOURNEL</Link>
