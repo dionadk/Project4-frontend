@@ -176,7 +176,7 @@ handleEditJournelItem(e) {
   let selectedUser = this.props.match.params._id;
   let journelId = this.state.editingJournel;
 
-  axios.post(`http://localhost:4000/api/journels/${journelId}/updatejournel`,{
+  axios.post(`https://mytrip.herokuapp.com/api/journels/${journelId}/updatejournel`,{
     moment: this.state.moment,
     place: this.state.place,
     image: this.state.image,
