@@ -158,7 +158,26 @@ li{
   margin:0 10px;
   color:#fff;
 }
-
+.addmemberPic{
+    background: gray;
+    border-radius: 100px;
+    height: 60px;
+    width: 60px;
+    margin: 0 20px;
+}
+.addmemberPic a{
+  margin: 0;
+}
+.memberPic{
+    background: #009688;
+    border-radius: 100px;
+    height: 60px;
+    width: 60px;
+    margin: 0 20px;
+}
+.memberPic a{
+  margin: 0;
+}
 .profilePic{
     background: linear-gradient(141deg, rgba(15, 184, 173, 1) 0%, rgba(31, 200, 219, 1) 51%, rgba(44, 181, 232, 1) 75%);
     border-radius: 100px;
@@ -166,9 +185,15 @@ li{
     width: 60px;
     margin: 20px;
 }
+.memberPic img,
 .profilePic img{
 height: 60px;
 width: 60px;
+}
+.memberHdr{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
 }
 .journelHdr,
 .profileHdr{

@@ -33,7 +33,7 @@ export default class Landing extends Component {
           image: '',
           date: '',
           memberEmail: null,
-          groups: [],
+          groups: '',
           groupName: null
         }
 
@@ -48,7 +48,8 @@ export default class Landing extends Component {
         this.handleEditJournelItem = this.handleEditJournelItem.bind(this)
         this.toggleJournelEditing = this.toggleJournelEditing.bind(this)
         this.handleDeleteJournel = this.handleDeleteJournel.bind(this)
-
+        // reload to group page
+        this.reload = this.reload.bind(this)
 
   }
 
@@ -82,11 +83,12 @@ export default class Landing extends Component {
 
 console.log("in group");
   axios.get(`https://mytrip.herokuapp.com/api/users/${selectedUser}/groups`)
+  // axios.get(`http://localhost:4000/api/users/${selectedUser}/groups`)
 
       .then(response => this.setState({
         groups: response.data
       }))
-      .then(response => console.log(response))
+      .then(response => console.log(this.state.groups))
       .catch((err) => console.log(err))
 }
   // editing todo
@@ -275,6 +277,10 @@ renderItemOrEditJournel( journel ) {
     </li>;
   }
 }
+// reload function
+reload () {
+  window.location.reload()
+}
 // end of journel edit
   render () {
     return(
@@ -300,20 +306,26 @@ renderItemOrEditJournel( journel ) {
               </div>
           </div>
           <div className="flexright">
-
+            <div className="flexrow">
+              <div className="memberHdr memberPic">
+                <img src="https://i.imgur.com/RhRFgoN.png"/>
+              </div>
+              <div className="memberHdr memberPic">
+                <Link className="memeberLnk" onClick={ this.reload } to={`/Project4-frontend/home/${this.state.groups.creator}`}><img src="https://i.imgur.com/Hx5sNm9.png"/></Link>
+              </div>
+                <div className="profileHdr">
+                  <label>Members</label>
+                </div>
+</div>
               {/* create group form */}
 
               <section className='col s8'>
                 <Group user={this.state.user}/>
-                  <ul>
-                    {this.state.groups.map(group => {
-                      return (
-                        <div className='group' key={group._id}>
-                          <p>{group.groupName}</p>
-                          <h6> ~ {group.users}</h6>
-                        </div>)
-                    })}
-                  </ul>
+
+                        <div className='group' >
+                          {/* <a href=`/Project4-frontend/home/${this.state.groups.creator}`>{this.state.groups.groupName}</a> */}
+                          {/* <h6> ~ {group.users}</h6> */}
+                        </div>
               </section>
 
           </div>
