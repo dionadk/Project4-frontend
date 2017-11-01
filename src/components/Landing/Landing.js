@@ -32,7 +32,9 @@ export default class Landing extends Component {
           place: '',
           image: '',
           date: '',
-          memberEmail: null
+          memberEmail: null,
+          groups: [],
+          groupName: null
         }
 
         // handle edit todo functions
@@ -77,7 +79,16 @@ export default class Landing extends Component {
         }))
         .then(response => console.log(this.state.user))
         .catch((err) => console.log(err))
-  }
+
+console.log("in group");
+  axios.get(`https://mytrip.herokuapp.com/api/users/${selectedUser}/groups`)
+
+      .then(response => this.setState({
+        groups: response.data
+      }))
+      .then(response => console.log(response))
+      .catch((err) => console.log(err))
+}
   // editing todo
 // check if user is updating.
   handleEditField( event ) {
@@ -291,9 +302,19 @@ renderItemOrEditJournel( journel ) {
           <div className="flexright">
 
               {/* create group form */}
-              <Group
-                user={this.state.user}
-              />
+
+              <section className='col s8'>
+                <Group user={this.state.user}/>
+                  <ul>
+                    {this.state.groups.map(group => {
+                      return (
+                        <div className='group' key={group._id}>
+                          <p>{group.groupName}</p>
+                          <h6> ~ {group.users}</h6>
+                        </div>)
+                    })}
+                  </ul>
+              </section>
 
           </div>
         </div>
