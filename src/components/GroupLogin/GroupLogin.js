@@ -55,7 +55,7 @@ export default class GroupLogin extends Component {
             <label className="logo">CaptureIt</label>
                   <div id="parent">
                        <form id="form_login" onSubmit={this.handleSubmitLogin}>
-                         <div className="formLoginHeader"><label>Login</label></div>
+                         <div className="formLoginHeader"><label>Group Login</label></div>
                            <div>
                              <input className="loginTxt" name="email" type="text" placeholder="demo5@gmail.com - user email" onChange={this.handleCreateLogin}/>
                            </div>
