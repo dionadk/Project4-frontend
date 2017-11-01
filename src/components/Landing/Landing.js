@@ -81,7 +81,7 @@ export default class Landing extends Component {
         .then(response => console.log(this.state.user))
         .catch((err) => console.log(err))
 
-console.log("in group");
+        console.log("in group");
   axios.get(`https://mytrip.herokuapp.com/api/users/${selectedUser}/groups`)
   // axios.get(`http://localhost:4000/api/users/${selectedUser}/groups`)
 
@@ -301,33 +301,28 @@ reload () {
             <div className="profilePic"><img src="https://i.imgur.com/Hx5sNm9.png"/></div>
 
               <div className="profileHdr">
-                <label>Welcome</label>
-                <span>{this.state.user.userName}</span>
+                {/* <label className="mainHdr">Welcome</label> */}
+                <span className="mainHdr">{this.state.user.userName}</span>
               </div>
           </div>
           <div className="flexright">
             <div className="flexrow">
-              <div className="memberHdr memberPic">
+              {/* <div className="memberHdr memberPic">
                 <img src="https://i.imgur.com/RhRFgoN.png"/>
-              </div>
-              <div className="memberHdr memberPic">
+              </div> */}
+              {/* <div className="memberHdr memberPic"> */}
+              <div className="">
+                <label className="mainHdr">Shared Groups</label>
                 <Link className="memeberLnk" onClick={ this.reload } to={`/Project4-frontend/home/${this.state.groups.creator}`}>{this.state.groups.groupName}</Link>
                 {/* <img src="https://i.imgur.com/Hx5sNm9.png"/> */}
               </div>
-                <div className="profileHdr">
+                {/* <div className="profileHdr">
                   <label>Members</label>
-                </div>
-</div>
+                </div> */}
+            </div>
               {/* create group form */}
 
-              <section className='col s8'>
                 <Group user={this.state.user}/>
-
-                        <div className='group' >
-                          {/* <a href=`/Project4-frontend/home/${this.state.groups.creator}`>{this.state.groups.groupName}</a> */}
-                          {/* <h6> ~ {group.users}</h6> */}
-                        </div>
-              </section>
 
           </div>
         </div>

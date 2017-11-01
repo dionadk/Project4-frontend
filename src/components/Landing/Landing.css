@@ -178,6 +178,10 @@ li{
 .memberPic a{
   margin: 0;
 }
+label.mainHdr {
+  font-family: sans-serif;
+  font-size: 30px;
+}
 .profilePic{
     background: linear-gradient(141deg, rgba(15, 184, 173, 1) 0%, rgba(31, 200, 219, 1) 51%, rgba(44, 181, 232, 1) 75%);
     border-radius: 100px;

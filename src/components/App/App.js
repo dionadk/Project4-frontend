@@ -41,12 +41,13 @@ class App extends Component {
           <Switch>
 
             <Route exact path='/Project4-frontend' render={(props) => (
-              <Signup
+              <Login
                 {...props}
                 users={this.state.user} />
             )}/>
-            <Route exact path='/Project4-frontend/login' render={(props) => (
-              <Login
+
+            <Route exact path='/Project4-frontend/signup' render={(props) => (
+              <Signup
                 {...props}
                 users={this.state.user} />
             )}/>
