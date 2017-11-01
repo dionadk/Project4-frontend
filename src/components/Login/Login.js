@@ -54,10 +54,10 @@ export default class Login extends Component {
                        <form id="form_login" onSubmit={this.handleSubmitLogin}>
                          <div className="formLoginHeader"><label>Login</label></div>
                            <div>
-                             <input className="loginTxt" name="email" type="text" placeholder="demo5@gmail.com" onChange={this.handleCreateLogin}/>
+                             <input className="loginTxt" name="email" type="text" placeholder="demo@gmail.com" onChange={this.handleCreateLogin}/>
                            </div>
                            <div>
-                             <input className="loginTxt" name="password" type="password" placeholder="demo5" onChange={this.handleCreateLogin}/>
+                             <input className="loginTxt" name="password" type="password" placeholder="demo" onChange={this.handleCreateLogin}/>
                            </div>
                              <button className="loginBtn" type="submit" value="signup">Login</button>
                        </form>

@@ -57,13 +57,13 @@ export default class GroupLogin extends Component {
                        <form id="form_login" onSubmit={this.handleSubmitLogin}>
                          <div className="formLoginHeader"><label>Group Login</label></div>
                            <div>
-                             <input className="loginTxt" name="email" type="text" placeholder="demo5@gmail.com - user email" onChange={this.handleCreateLogin}/>
+                             <input className="loginTxt" name="email" type="text" placeholder="demo@gmail.com - user email" onChange={this.handleCreateLogin}/>
                            </div>
                            <div>
-                             <input className="loginTxt" name="groupEmail" type="text" placeholder="ali@gmail.com - group email" onChange={this.handleCreateLogin}/>
+                             <input className="loginTxt" name="groupEmail" type="text" placeholder="dio@gmail.com - group email" onChange={this.handleCreateLogin}/>
                            </div>
                            <div>
-                             <input className="loginTxt" name="password" type="password" placeholder="demo5 - user pw" onChange={this.handleCreateLogin}/>
+                             <input className="loginTxt" name="password" type="password" placeholder="demo - user pw" onChange={this.handleCreateLogin}/>
                            </div>
                              <button className="loginBtn" type="submit" value="signup">Login</button>
                        </form>
