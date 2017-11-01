@@ -311,7 +311,8 @@ reload () {
                 <img src="https://i.imgur.com/RhRFgoN.png"/>
               </div>
               <div className="memberHdr memberPic">
-                <Link className="memeberLnk" onClick={ this.reload } to={`/Project4-frontend/home/${this.state.groups.creator}`}><img src="https://i.imgur.com/Hx5sNm9.png"/></Link>
+                <Link className="memeberLnk" onClick={ this.reload } to={`/Project4-frontend/home/${this.state.groups.creator}`}>{this.state.groups.groupName}</Link>
+                {/* <img src="https://i.imgur.com/Hx5sNm9.png"/> */}
               </div>
                 <div className="profileHdr">
                   <label>Members</label>
