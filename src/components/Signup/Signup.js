@@ -80,7 +80,7 @@ export default class Signup extends Component {
                     <div className="flexrow">
                         <div className="flexstretch"></div>
                         <div className="flexright navigation">
-                            <Link to='/Project4-frontend/login' id="contactLnk" className="menuItem" href="/Project4-frontend">LOGIN</Link>
+                            <Link to='/Project4-frontend' id="contactLnk" className="menuItem" href="/Project4-frontend">LOGIN</Link>
                             <Link to='/Project4-frontend' id="contactLnk" className="menuItem" href="/Project4-frontend">ABOUT US</Link>
                         </div>
                     </div>
