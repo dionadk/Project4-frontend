@@ -26,15 +26,23 @@ export default class Landing extends Component {
           todos: [],
           journels: [],
           editing: null,
-          editingJournel: null, // *** maybe editingTodoId
+          editingJournel: null,
           item: '',
           moment: '',
           place: '',
           image: '',
           date: '',
-          memberEmail: null,
-          groups: '',
-          groupName: null
+          groups: [],
+          groupName: '',
+          memberEmail: '',
+          users: [],
+          creator: '',
+          groups: {
+            groupName: '',
+            memberEmail: '',
+            users: [],
+            creator: ''
+          }
         }
 
         // handle edit todo functions
@@ -78,17 +86,17 @@ export default class Landing extends Component {
         .then(response => this.setState({
           journels: response.data
         }))
-        .then(response => console.log(this.state.user))
+        .then(response => console.log(this.state.journels))
         .catch((err) => console.log(err))
 
-        console.log("in group");
+        console.log(this.state.groups);
   axios.get(`https://mytrip.herokuapp.com/api/users/${selectedUser}/groups`)
   // axios.get(`http://localhost:4000/api/users/${selectedUser}/groups`)
 
       .then(response => this.setState({
         groups: response.data
       }))
-      .then(response => console.log(this.state.groups))
+      .then(response => console.log(this.state))
       .catch((err) => console.log(err))
 }
   // editing todo
@@ -301,7 +309,7 @@ reload () {
             <div className="profilePic"><img src="https://i.imgur.com/Hx5sNm9.png"/></div>
 
               <div className="profileHdr">
-                {/* <label className="mainHdr">Welcome</label> */}
+
                 <span className="mainHdr">{this.state.user.userName}</span>
               </div>
           </div>
@@ -313,12 +321,22 @@ reload () {
               {/* <div className="memberHdr memberPic"> */}
               <div className="">
                 <label className="mainHdr">Shared Groups</label>
-                <Link className="memeberLnk" onClick={ this.reload } to={`/Project4-frontend/home/${this.state.groups.creator}`}>{this.state.groups.groupName}</Link>
-                {/* <img src="https://i.imgur.com/Hx5sNm9.png"/> */}
+                {/* <Link className="memeberLnk" onClick={ this.reload } to={`/Project4-frontend/home/${this.state.groups.creator}`}>{this.state.groups.groupName}</Link> */}
+                {/* <ul>
+
+                  {this.state.groups.map(group => {
+                    return (
+                      <div key={group._id}>
+                      <Link className="memeberLnk" onClick={ this.reload } to={`/Project4-frontend/home/${group.creator}`}>{group.groupName}</Link>
+
+                  </div>)
+                })}
+
+
+
+              </ul> */}
               </div>
-                {/* <div className="profileHdr">
-                  <label>Members</label>
-                </div> */}
+
             </div>
               {/* create group form */}
 
