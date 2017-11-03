@@ -312,7 +312,7 @@ console.log(this.state.groupVisible)
                     <label className="logo">CaptureIt</label>
                 </div>
                 <div className="flexright navigation">
-                    <Link id="contactLnk" className="menuItem" to={`/Project4-frontend/home/${this.state.user._id}/createJournels`}>CREATE JOURNEL</Link>
+                    <Link id="contactLnk" className="menuItem" to={`/Project4-frontend/home/${this.state.user._id}/createJournels`}>CREATE JOURNAL</Link>
                     <a id="contactLnk" className="menuItem" href="/Project4-frontend">LOGOUT</a>
                 </div>
             </div>

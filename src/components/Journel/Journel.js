@@ -55,7 +55,7 @@ export default class Journel extends Component {
 let selectedUser = this.props.match.params._id
       return(
         <div className="createJournel" >
-          <h1 className="profileHdr"><span>Create Journel</span></h1>
+          <h1 className="profileHdr"><span>Create Journal</span></h1>
             <div className="flexrow">
               <form className="editJournel" onSubmit={this.handleSubmitJournel}>
                 <div className="flexrow">
