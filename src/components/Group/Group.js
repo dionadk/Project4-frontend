@@ -16,7 +16,6 @@ export default class Group extends Component {
     this.handleSubmitGroup = this.handleSubmitGroup.bind(this)
     this.handleAddMember = this.handleAddMember.bind(this)
     this.handleSubmitMember = this.handleSubmitMember.bind(this)
-
   }
 
   handleCreateGroup (e) {
@@ -35,7 +34,6 @@ export default class Group extends Component {
     this.setState ({
       [name]: e.target.value,
       creator: this.props.user._id
-
     })
   }
 
@@ -92,5 +90,4 @@ export default class Group extends Component {
       </div>
     )
   }
-
 }

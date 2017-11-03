@@ -321,7 +321,7 @@ reload () {
               {/* <div className="memberHdr memberPic"> */}
               <div className="">
                 <label className="mainHdr">Shared Groups</label>
-                {/* <Link className="memeberLnk" onClick={ this.reload } to={`/Project4-frontend/home/${this.state.groups.creator}`}>{this.state.groups.groupName}</Link> */}
+                <Link className="memeberLnk" onClick={ this.reload } to={`/Project4-frontend/home/${this.state.groups.creator}`}>{this.state.groups.groupName}</Link>
                 {/* <ul>
 
                   {this.state.groups.map(group => {
@@ -331,9 +331,6 @@ reload () {
 
                   </div>)
                 })}
-
-
-
               </ul> */}
               </div>
 
