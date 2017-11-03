@@ -34,6 +34,15 @@
     width: 100%;
 }
 
+.flexhdr {
+    display: flex;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+}
+
 .flexleft {
     display: flex;
     -ms-flex: 0 0 auto;
@@ -179,8 +188,10 @@ li{
   margin: 0;
 }
 label.mainHdr {
-  font-family: sans-serif;
-  font-size: 30px;
+    font-family: sans-serif;
+    font-size: 15px;
+    text-align: right;
+    margin-right: 20px;
 }
 .profilePic{
     background: linear-gradient(141deg, rgba(15, 184, 173, 1) 0%, rgba(31, 200, 219, 1) 51%, rgba(44, 181, 232, 1) 75%);
@@ -274,4 +285,48 @@ width: 60px;
   background-color: rgba(158, 158, 158, 0);
   margin:15px 0;
   width: 100px;
+}
+#dialog{
+    background-color: rgb(245, 245, 245);
+    box-shadow: 2px 2px 5px grey;
+    position: fixed;
+    top: 50%;
+    left: 30%;
+    width: 450px;
+    height: 250px;
+}
+#dialog input{
+  width: 250px;
+}
+.closebtn{
+
+    font-size: 16px;
+    background-color: #E91E63;
+    border: 0;
+    /* padding: 10px; */
+    border-radius: 35px;
+    cursor: pointer;
+    width: 40px;
+    margin-top: -20px;
+    margin-left: 430px;
+    color: #fff;
+    outline: none;
+    -webkit-box-shadow: 2px 2px 5px grey;
+    box-shadow: 2px 2px 5px grey;
+}
+
+.addMember{
+
+    font-size: 16px;
+    background-color: #E91E63;
+    border: 0;
+    border-radius: 35px;
+    cursor: pointer;
+    width: 55px;
+    height: 55px;
+    margin-right: 20px;
+    color: #fff;
+    outline: none;
+    -webkit-box-shadow: 2px 2px 5px grey;
+    box-shadow: 2px 2px 5px grey;
 }

@@ -41,7 +41,8 @@ export default class Landing extends Component {
             groupName: '',
             memberEmail: '',
             users: [],
-            creator: ''
+            creator: '',
+            groupVisible: false
           }
         }
 
@@ -58,6 +59,7 @@ export default class Landing extends Component {
         this.handleDeleteJournel = this.handleDeleteJournel.bind(this)
         // reload to group page
         this.reload = this.reload.bind(this)
+        this.onClick = this.onClick.bind(this)
 
   }
 
@@ -100,6 +102,9 @@ export default class Landing extends Component {
       .catch((err) => console.log(err))
 }
   // editing todo
+
+
+
 // check if user is updating.
   handleEditField( event ) {
       let name = event.target.name
@@ -289,8 +294,16 @@ renderItemOrEditJournel( journel ) {
 reload () {
   window.location.reload()
 }
+onClick () {
+  console.log("hello")
+this.setState({
+  groupVisible: !this.state.groupVisible
+})
+console.log(this.state.groupVisible)
+}
 // end of journel edit
   render () {
+
     return(
       <div>
         <nav>
@@ -319,26 +332,21 @@ reload () {
                 <img src="https://i.imgur.com/RhRFgoN.png"/>
               </div> */}
               {/* <div className="memberHdr memberPic"> */}
-              <div className="">
+              <div className="flexhdr">
                 <label className="mainHdr">Shared Groups</label>
                 <Link className="memeberLnk" onClick={ this.reload } to={`/Project4-frontend/home/${this.state.groups.creator}`}>{this.state.groups.groupName}</Link>
-                {/* <ul>
-
-                  {this.state.groups.map(group => {
-                    return (
-                      <div key={group._id}>
-                      <Link className="memeberLnk" onClick={ this.reload } to={`/Project4-frontend/home/${group.creator}`}>{group.groupName}</Link>
-
-                  </div>)
-                })}
-              </ul> */}
               </div>
 
+                <button className="addMember"  onClick={() => this.onClick()}>ADD</button>
             </div>
-              {/* create group form */}
+              {
+              this.state.groupVisible ?
+              <div id="dialog">
+                <button className="closebtn"  onClick={() => this.onClick()}>X</button>
+                 <Group user={this.state.user}/>
+               </div> : null
 
-                <Group user={this.state.user}/>
-
+              }
           </div>
         </div>
 
